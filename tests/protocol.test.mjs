@@ -104,3 +104,33 @@ test('server expires a silent connection without waiting for TCP close', {timeou
  assert(Date.now()-start>=5000);assert.equal(state.players.length,1);
  }finally{host.close();guest.close();}
 });
+
+test('expanded dictionary accepts 비비 and 비수 with sourced explanations', {timeout:30000},async()=>{
+ const peers=[];
+ try {
+  const host=await connect({type:'create',name:'사전검증'});peers.push(host);
+  const h=await host.wait(m=>m.type==='welcome');
+  const guest=await connect({type:'join',code:h.code,name:'사전검증2'});peers.push(guest);
+  const g=await guest.wait(m=>m.type==='welcome');const ids=[h.playerId,g.playerId];
+  await host.act({type:'configure',rounds:1},m=>m.type==='state'&&m.room.totalRounds===1);
+  for(const p of peers)await p.act({type:'ready',ready:true},m=>m.type==='state'&&m.room.players.some(x=>x.ready));
+  let room=(await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing')).room;
+  await sleep(room.startsAt-Date.now()+60);
+  const queue=room.currentWord.nextStarts.map(s=>({s,path:[]}));const seen=new Set();let path;
+  while(queue.length){const node=queue.shift();if(node.s==='비'){path=node.path;break;}if(seen.has(node.s))continue;seen.add(node.s);
+   for(const e of dict.entries)if(e.firstSyllable===node.s&&e.reading!==room.currentWord.reading)queue.push({s:e.lastSyllable,path:[...node.path,e.label]});
+  }
+  assert(path,'reachable chain to 비');
+  for(const word of [...path,'비비','비수']){
+   const p=peers[ids.indexOf(room.turnPlayerId)];const count=room.acceptedCount;
+   room=(await p.act({type:'submit',word,turnId:room.turnId},m=>m.type==='state'&&m.room.acceptedCount===count+1)).room;
+   if(['비비','비수'].includes(word)){
+    const accepted=room.currentWord;assert.equal(accepted.label,word);
+    assert(accepted.meanings.some(m=>m.definition&&m.source.url.startsWith('https://opendict.korean.go.kr/')));
+    assert(!accepted.meanings[0].definition.includes('규범 표기는'));
+    if(word==='비수')assert(accepted.meanings[0].definition.includes('칼'));
+    console.log(word,accepted.meanings[0].definition,room.dictionaryVersion);
+   }
+  }
+ }finally{for(const p of peers){if(p.ws.readyState===WebSocket.OPEN)p.send({type:'leave'});p.close();}}
+});

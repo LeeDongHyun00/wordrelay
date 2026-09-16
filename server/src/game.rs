@@ -989,7 +989,7 @@ mod tests {
         let next = d.lookup("과자").unwrap();
         g.previous = Some(seed);
         g.used = (0..d.entries.len())
-            .filter(|i| d.entries[*i].first_syllable == "자")
+            .filter(|i| d.entries[*i].first_syllable.as_ref() == "자")
             .collect();
         g.used.insert(seed);
         g.submit(&g.players[0].id.clone(), g.turn_id, "과자", d, now)

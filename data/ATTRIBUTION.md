@@ -27,3 +27,13 @@
 ## 역 이름
 
 국가철도공단 철도산업정보센터 철도역 정보(https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp)와 서울특별시 교통 안내(https://mediahub.seoul.go.kr/archives/187867)에서 역 이름·노선 사실 정보를 확인했습니다. 설명과 인정 근거는 자체 작성했습니다. 원문 설명·이미지는 포함하지 않습니다. 수집 스냅샷은 2026-09-16 기준이며 모든 역의 현재 운영 여부를 보증하지 않습니다. `stations.json`은 등록 목록, `station-supplements.json`은 추가 확인 목록입니다.
+
+## 우리말샘 확장 사전
+
+저작자: 국립국어원. 원출처: https://opendict.korean.go.kr/
+공식 정책: https://opendict.korean.go.kr/service/copyrightPolicy
+라이선스: CC BY-SA 2.0 KR, https://creativecommons.org/licenses/by-sa/2.0/kr/legalcode
+
+공개 미러 spellcheck-ko/korean-dict-nikl의 고정 커밋에서 전체 XML을 취득했습니다. 원본 생성 시각, 커밋, 파일별 SHA-256, 필터별 집계는 `opendict-import-report.json`에 기록합니다. 미러는 국립국어원이 운영하는 서비스가 아닙니다.
+
+변경 사항: 명사 성격의 품사와 현대 한글 표기를 추출하고 사전의 붙임표·공백·분석 기호를 제거했습니다. 중복 표기는 하나로 합치고 일반어 뜻을 우선한 대표 뜻풀이 하나를 보존했습니다. 기존 통합 사전에 있는 표기는 기존 뜻풀이를 유지합니다. 방언·북한어·옛말도 해당 품사와 표기 조건을 만족하면 포함하며, 설명의 인정 근거에 구분을 표시합니다. 규범 표기가 따로 있거나 잘못된 표기임을 명시한 뜻풀이는 제외합니다. 예문과 미디어는 포함하지 않습니다. `opendict.json.gz` 파생 데이터는 동일한 CC BY-SA 2.0 KR로 배포합니다.

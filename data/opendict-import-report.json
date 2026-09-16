@@ -1,0 +1,170 @@
+{
+  "repository": "https://github.com/spellcheck-ko/korean-dict-nikl",
+  "commit": "42c0d01889f34536e9cf94fe57f62bd2055b1bde",
+  "sourceBuildDates": [
+    "20260602021241",
+    "20260602030619",
+    "20260602035545",
+    "20260602044645",
+    "20260602053800",
+    "20260602062818",
+    "20260602071706",
+    "20260602080720",
+    "20260602090136",
+    "20260602095801",
+    "20260602105444",
+    "20260602115036",
+    "20260602124515",
+    "20260602134105",
+    "20260602143656",
+    "20260602153126",
+    "20260602162617",
+    "20260602172051",
+    "20260602181548",
+    "20260602193032",
+    "20260602202703",
+    "20260602212130",
+    "20260602221441",
+    "20260602230814",
+    "20260602231251"
+  ],
+  "retrievedAt": "2026-09-16",
+  "inputs": [
+    {
+      "file": "0050000.xml",
+      "bytes": 79467002,
+      "sha256": "6ad9e3f1c13a81d37453698e334f570781cd02d28591ba4f787dc4104983f5f5"
+    },
+    {
+      "file": "0100000.xml",
+      "bytes": 78474739,
+      "sha256": "1761a15e19b557b0c4e8cf3c44ae33d4583983f6466079f23532ca6e6c64cdba"
+    },
+    {
+      "file": "0150000.xml",
+      "bytes": 79764122,
+      "sha256": "c007f0103b8bfebcc4cfc97de810053df39bd43567abf048003a92884c9df249"
+    },
+    {
+      "file": "0200000.xml",
+      "bytes": 77574195,
+      "sha256": "dedd41645fb5606da1329c9284357dddd42d3b79350a356506dd8206fddf15c0"
+    },
+    {
+      "file": "0250000.xml",
+      "bytes": 77571086,
+      "sha256": "d1c08b84dc526c0e45b6865d4025a7c3eb30d6bdde47fedee0efb067d87ec186"
+    },
+    {
+      "file": "0300000.xml",
+      "bytes": 77593962,
+      "sha256": "567c2817068d6cc3c0ab0917a1e4e2d52eb7b01c9c658ded08b6776aa5b5a3b0"
+    },
+    {
+      "file": "0350000.xml",
+      "bytes": 72412706,
+      "sha256": "b2bbc4b78582368c2cbb0daf9bb852bdc831b641b86f13bd04114cc5178ca29e"
+    },
+    {
+      "file": "0400000.xml",
+      "bytes": 76535770,
+      "sha256": "e9fe753b5ce2ace6cc7d3205014c37e93a01b8e23bcccc8c6f2fc3cf8898abfa"
+    },
+    {
+      "file": "0450000.xml",
+      "bytes": 78277731,
+      "sha256": "9ae49ec09bfd913df78bf1a8c9de9452115f20f57b7d908ee21c5e92bca9ef9f"
+    },
+    {
+      "file": "0500000.xml",
+      "bytes": 78055723,
+      "sha256": "016712a25b5b69cdbf108db3a3fe70792ecc8128fabb98722959a6a42239e52d"
+    },
+    {
+      "file": "0550000.xml",
+      "bytes": 78037346,
+      "sha256": "047470cfdc24756acba06d15895dc439c574ea600d8b74208eeec81a020383d6"
+    },
+    {
+      "file": "0600000.xml",
+      "bytes": 77228229,
+      "sha256": "10fcea01c9606ae61a64e48a92acb9a6459c47fdfa2eb01d3c0bb569451fdd2c"
+    },
+    {
+      "file": "0650000.xml",
+      "bytes": 76324772,
+      "sha256": "72a50c397e4a1ad01d862d7003b32b1a819de9abba873da781e800f2256a3f9c"
+    },
+    {
+      "file": "0700000.xml",
+      "bytes": 76001633,
+      "sha256": "725e86f8164bc12c58819f6e136f73a67aa7f72163aec19f326267f10f179b9e"
+    },
+    {
+      "file": "0750000.xml",
+      "bytes": 78439533,
+      "sha256": "f2661ff7c28b94baf437b826601871d6ce8082f4d62c55ef194402b42100cc30"
+    },
+    {
+      "file": "0800000.xml",
+      "bytes": 76833894,
+      "sha256": "4f54d13adf96d509bf14061341fccd700d99ef73887f175f7b063c1e86d0d6e1"
+    },
+    {
+      "file": "0850000.xml",
+      "bytes": 78976770,
+      "sha256": "226eb9b51b8dcd1e5da279b7628d91e481b72816f842cdaff7d48426440ca569"
+    },
+    {
+      "file": "0900000.xml",
+      "bytes": 78335706,
+      "sha256": "3cc50ffa4d8a1b7994d7218f82e98a1e3b79ac25ac9876f5f0a6fbdbec07830b"
+    },
+    {
+      "file": "0950000.xml",
+      "bytes": 77525393,
+      "sha256": "2e1be938d725cf54d57932584f44e77b0dc812f4cf17eee1826cc758b0de470c"
+    },
+    {
+      "file": "1000000.xml",
+      "bytes": 76367581,
+      "sha256": "02f59404befce0be94c2f20f5f834b75ef3b90a631534f13e4087caebf7e4bad"
+    },
+    {
+      "file": "1050000.xml",
+      "bytes": 76476275,
+      "sha256": "571ef0ca339d0c646941d5bde9ea63d431b9364b573c65f7dc1e9b05318368a1"
+    },
+    {
+      "file": "1100000.xml",
+      "bytes": 75836654,
+      "sha256": "2048cb8d81bacfbf3ff22a249d5e61d1bea75863d2d35726279a4ff1c96bb1bb"
+    },
+    {
+      "file": "1150000.xml",
+      "bytes": 76774710,
+      "sha256": "beba7a87226153add171c9036c9054fbd3e9fcbb579eaefd4a7fd949995b147d"
+    },
+    {
+      "file": "1200000.xml",
+      "bytes": 75968109,
+      "sha256": "fbb818209374e51c27cd413538d09ac882f9276d95bc6e09c6a6ba890afb8547"
+    },
+    {
+      "file": "1204559.xml",
+      "bytes": 6184041,
+      "sha256": "060a9be8c2026fa4b268f4e1d5f29d7dcf3552d404cc7a242a9979af9fcbee43"
+    }
+  ],
+  "counts": {
+    "sourceSenses": 1204559,
+    "excludedSpellingOrLength": 2965,
+    "excludedNonNoun": 620118,
+    "coveredByBase": 83957,
+    "excludedIncorrectSpelling": 24882
+  },
+  "addedUniqueEntries": 382608,
+  "totalUniqueEntries": 411845,
+  "policy": "One or more modern Hangul syllables; noun-bearing parts of speech; prefer general-language first sense; preserve curated base; exclude explicitly incorrect spellings, examples and multimedia. One representative sense per added spelling.",
+  "license": "CC-BY-SA-2.0-KR"
+}

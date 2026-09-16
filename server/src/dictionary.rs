@@ -1,5 +1,22 @@
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
+use std::sync::{Arc, Mutex, OnceLock};
+
+// A large dictionary repeats a small set of category, source and rule strings.
+// Intern while deserializing so peak memory also stays within the hosting limit.
+fn shared_text<'de, D: serde::Deserializer<'de>>(d: D) -> Result<Arc<str>, D::Error> {
+    static TEXT: OnceLock<Mutex<HashMap<String, Arc<str>>>> = OnceLock::new();
+    let text = String::deserialize(d)?;
+    let mut pool = TEXT
+        .get_or_init(|| Mutex::new(HashMap::new()))
+        .lock()
+        .unwrap();
+    Ok(pool
+        .entry(text.clone())
+        .or_insert_with(|| Arc::from(text))
+        .clone())
+}
+
 use unicode_categories::UnicodeCategories;
 use unicode_normalization::UnicodeNormalization;
 
@@ -8,6 +25,8 @@ use unicode_normalization::UnicodeNormalization;
 struct Dataset {
     version: String,
     entries: Vec<Entry>,
+    #[serde(default)]
+    supplements: Vec<String>,
 }
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -15,29 +34,34 @@ pub struct Entry {
     pub label: String,
     pub reading: String,
     aliases: Vec<String>,
-    pub first_syllable: String,
-    pub last_syllable: String,
+    #[serde(deserialize_with = "shared_text")]
+    pub first_syllable: Arc<str>,
+    #[serde(deserialize_with = "shared_text")]
+    pub last_syllable: Arc<str>,
     senses: Vec<Sense>,
 }
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct Sense {
-    category: String,
+    #[serde(deserialize_with = "shared_text")]
+    category: Arc<str>,
     definition: String,
-    acceptance_reason: String,
+    #[serde(deserialize_with = "shared_text")]
+    acceptance_reason: Arc<str>,
     source: Source,
 }
 #[derive(Clone, Deserialize, Serialize)]
 pub struct Source {
-    name: String,
+    #[serde(deserialize_with = "shared_text")]
+    name: Arc<str>,
     url: String,
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Meaning {
-    category: String,
+    category: Arc<str>,
     definition: String,
-    reason: String,
+    reason: Arc<str>,
     source: Source,
 }
 #[derive(Clone, Serialize)]
@@ -92,8 +116,22 @@ pub fn allowed_starts(last: &str) -> Vec<String> {
 }
 impl Dictionary {
     pub fn load(path: &str) -> Result<Self, Box<dyn std::error::Error>> {
-        let data: Dataset =
+        let mut data: Dataset =
             serde_json::from_reader(std::io::BufReader::new(std::fs::File::open(path)?))?;
+        #[derive(Deserialize)]
+        struct Supplement {
+            entries: Vec<Entry>,
+        }
+        for name in &data.supplements {
+            let file = std::path::Path::new(path)
+                .parent()
+                .unwrap_or(std::path::Path::new("."))
+                .join(name);
+            let decoder =
+                flate2::read::GzDecoder::new(std::io::BufReader::new(std::fs::File::open(file)?));
+            let supplement: Supplement = serde_json::from_reader(std::io::BufReader::new(decoder))?;
+            data.entries.extend(supplement.entries);
+        }
         let mut keys = HashMap::new();
         let mut first: HashMap<String, Vec<usize>> = HashMap::new();
         for (i, e) in data.entries.iter().enumerate() {
@@ -107,7 +145,10 @@ impl Dictionary {
                     return Err("사전 검색 키 충돌".into());
                 }
             }
-            first.entry(e.first_syllable.clone()).or_default().push(i);
+            first
+                .entry(e.first_syllable.to_string())
+                .or_default()
+                .push(i);
         }
         let seeds = [
             "사과",
@@ -145,7 +186,8 @@ impl Dictionary {
     }
     pub fn follows(&self, prev: usize, next: usize) -> bool {
         allowed_starts(&self.entries[prev].last_syllable)
-            .contains(&self.entries[next].first_syllable)
+            .iter()
+            .any(|s| s == self.entries[next].first_syllable.as_ref())
     }
     pub fn has_next(&self, prev: usize, used: &HashSet<usize>) -> bool {
         allowed_starts(&self.entries[prev].last_syllable)
@@ -200,12 +242,12 @@ mod tests {
         let d = Dictionary::load("data/dictionary.json").unwrap();
         for name in ["서울역", "부산역", "강남역", "홍대입구역"] {
             let i = d.lookup(name).unwrap();
-            assert_eq!(d.entries[i].last_syllable, "역");
+            assert_eq!(d.entries[i].last_syllable.as_ref(), "역");
             assert!(
                 d.word(i)
                     .meanings
                     .iter()
-                    .any(|m| m.category == "station-name" && !m.definition.is_empty())
+                    .any(|m| m.category.as_ref() == "station-name" && !m.definition.is_empty())
             );
             assert!(d.follows(i, d.lookup("역사").unwrap()));
         }
@@ -223,9 +265,26 @@ mod tests {
     #[test]
     fn normalization_and_real_dictionary() {
         let d = Dictionary::load("data/dictionary.json").unwrap();
-        for word in ["사과", "아리", "원펀맨", "아처", "쉔"] {
+        for word in ["사과", "아리", "원펀맨", "아처", "쉔", "비비", "비수"] {
             assert!(d.lookup(word).is_some());
         }
+        for name in ["비비", "비수"] {
+            let word = d.word(d.lookup(name).unwrap());
+            assert!(!word.meanings[0].definition.is_empty());
+            assert!(
+                word.meanings[0]
+                    .source
+                    .url
+                    .starts_with("https://opendict.korean.go.kr/")
+            );
+        }
+        assert!(
+            d.word(d.lookup("비수").unwrap()).meanings[0]
+                .definition
+                .contains("칼")
+        );
+        assert!(d.follows(d.lookup("나비").unwrap(), d.lookup("비비").unwrap()));
+        assert!(d.follows(d.lookup("비비").unwrap(), d.lookup("비수").unwrap()));
         assert_eq!(d.lookup("P.E.K.K.A"), d.lookup("페카"));
         assert_eq!(d.lookup("리 신"), d.lookup("리신"));
         assert_eq!(normalize("사과!"), "사과");
