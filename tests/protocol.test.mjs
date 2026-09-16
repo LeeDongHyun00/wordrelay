@@ -82,7 +82,8 @@ test('two rounds advance automatically; totals persist; disconnected seat expire
   const guest=await connect({type:'join',code:h.code,name:'손님'});peers.push(guest);const g=await guest.wait(m=>m.type==='welcome');
   assert.equal((await guest.act({type:'configure',rounds:2},m=>m.type==='error')).code,'HOST_ONLY');
   await host.act({type:'configure',rounds:2},m=>m.type==='state'&&m.room.totalRounds===2);
-  for(const p of peers)await p.act({type:'ready',ready:true},m=>m.type==='state');
+  for(const p of peers){const id=(await p.wait(m=>m.type==='welcome')).playerId;await p.act({type:'ready',ready:true},m=>m.type==='state'&&m.room.players.find(x=>x.id===id)?.ready);}
+  await host.wait(m=>m.type==='state'&&m.room.canStart);
   await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing');
   const between=(await host.wait(m=>m.type==='state'&&m.room.phase==='intermission',0,16000)).room;
   assert.equal(between.round,1);assert.equal(between.roundResults.length,1);assert.equal(between.players.reduce((sum,p)=>sum+p.score,0),300);
@@ -124,7 +125,8 @@ test('expanded dictionary accepts 비비 and 비수 with sourced explanations', 
   const guest=await connect({type:'join',code:h.code,name:'사전검증2'});peers.push(guest);
   const g=await guest.wait(m=>m.type==='welcome');const ids=[h.playerId,g.playerId];
   await host.act({type:'configure',rounds:1},m=>m.type==='state'&&m.room.totalRounds===1);
-  for(const p of peers)await p.act({type:'ready',ready:true},m=>m.type==='state'&&m.room.players.some(x=>x.ready));
+  for(const p of peers){const id=(await p.wait(m=>m.type==='welcome')).playerId;await p.act({type:'ready',ready:true},m=>m.type==='state'&&m.room.players.find(x=>x.id===id)?.ready);}
+  await host.wait(m=>m.type==='state'&&m.room.canStart);
   let room=(await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing')).room;
   await sleep(room.startsAt-Date.now()+60);
   const queue=room.currentWord.nextStarts.map(s=>({s,path:[]}));const seen=new Set(room.currentWord.nextStarts);let path;
@@ -153,7 +155,8 @@ test('four players: first timeout ends round and everyone returns for round two'
   const host=await connect({type:'create',name:'라운드방장'});peers.push(host);const h=await host.wait(m=>m.type==='welcome');
   for(let i=1;i<4;i++){const p=await connect({type:'join',code:h.code,name:'참가자'+i});peers.push(p);await p.wait(m=>m.type==='welcome');}
   await host.act({type:'configure',rounds:2},m=>m.type==='state'&&m.room.totalRounds===2);
-  for(const p of peers)await p.act({type:'ready',ready:true},m=>m.type==='state');
+  for(const p of peers){const id=(await p.wait(m=>m.type==='welcome')).playerId;await p.act({type:'ready',ready:true},m=>m.type==='state'&&m.room.players.find(x=>x.id===id)?.ready);}
+  await host.wait(m=>m.type==='state'&&m.room.canStart);
   const first=(await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing')).room;
   assert.equal(first.deadline-first.startsAt,10000);
   const result=(await host.wait(m=>m.type==='state'&&m.room.phase==='intermission',0,16000)).room;
