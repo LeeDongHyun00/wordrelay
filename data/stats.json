@@ -1,14 +1,15 @@
 {
-  "version": "2026-09-16.b77e293d457c",
-  "uniqueEntries": 411845,
-  "senses": 420527,
+  "version": "2026-09-16.ecd57221095b",
+  "uniqueEntries": 802038,
+  "senses": 810720,
   "entriesByCategory": {
     "clash-royale-card": 120,
     "anime-title": 45,
-    "korean-noun": 410947,
+    "korean-noun": 410734,
     "station-name": 585,
     "lol-champion": 173,
-    "game-title": 2
+    "game-title": 2,
+    "korean-phrase": 390406
   },
   "multiCategoryEntries": 27,
   "note": "분류는 설명·출처를 위한 메타데이터이며 모든 항목은 하나의 정답 목록에서 인정됩니다."

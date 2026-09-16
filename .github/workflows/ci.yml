@@ -24,11 +24,20 @@ jobs:
         run: |
           cargo build --locked
           RUST_LOG=wordrelay=info ./target/debug/wordrelay > /tmp/wordrelay.log 2>&1 &
-          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:3000/api/health && break || sleep 1; done
+          server_pid=$!
+          ready=false
+          for i in $(seq 1 180); do
+            if curl -fsS http://127.0.0.1:3000/api/health >/dev/null 2>&1; then ready=true; break; fi
+            if ! kill -0 "$server_pid" 2>/dev/null; then cat /tmp/wordrelay.log; exit 1; fi
+            sleep 1
+          done
+          if [ "$ready" != true ]; then cat /tmp/wordrelay.log; exit 1; fi
           npm run test:protocol
           npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: browser-traces
-          path: test-results/
+          path: |
+            test-results/
+            /tmp/wordrelay.log

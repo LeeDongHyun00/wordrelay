@@ -1,4 +1,4 @@
-"""Import noun entries from a pinned, size- and Git-blob-verified NIKL XML mirror.
+"""Import noun and phrase entries from a pinned, size- and Git-blob-verified NIKL XML mirror.
 Usage: python3 scripts/import_opendict.py /path/to/opendict
 Keeps the original curated dictionary and writes a compressed supplement.
 No examples or multimedia are redistributed. Generated data: CC BY-SA 2.0 KR.
@@ -27,10 +27,10 @@ for f in manifest['files']:
   if e.tag=='lastBuildDate':dates.add(e.text)
   if e.tag!='item':continue
   counts['sourceSenses']+=1
-  word=e.findtext('wordInfo/word','');pos=e.findtext('senseInfo/pos','');kind=e.findtext('senseInfo/type','')
+  word=e.findtext('wordInfo/word','');pos=e.findtext('senseInfo/pos','');kind=e.findtext('senseInfo/type','');unit=e.findtext('wordInfo/word_unit','')
   label=re.sub(r'[-^\s]','',word)
   definition=e.findtext('senseInfo/definition','').strip();sid=e.findtext('target_code')
-  if '명사' not in pos:counts['excludedNonNoun']+=1
+  if '명사' not in pos and unit!='구':counts['excludedNonNounOrPhrase']+=1
   elif not re.fullmatch('[가-힣]+',label):counts['excludedSpellingOrLength']+=1
   elif not definition:counts['excludedNoDefinition']+=1
   elif re.search(r'⇒\s*규범 표기는|[’\']의 잘못',definition):counts['excludedIncorrectSpelling']+=1
@@ -38,7 +38,7 @@ for f in manifest['files']:
   else:
    priority=(kind!='일반어',int(e.findtext('senseInfo/sense_no','1')))
    if label not in selected or priority<selected[label][0]:
-    selected[label]=(priority,{'label':label,'reading':label,'aliases':[],'firstSyllable':label[0],'lastSyllable':label[-1], 'senses':[{'id':'opendict:'+sid,'category':'korean-noun','definition':definition,'acceptanceReason':f'국립국어원 우리말샘에 {pos}({kind})로 수록된 표제어입니다.','partOfSpeech':pos,'wordType':kind,'originalHeadword':word,'source':{'name':'국립국어원 우리말샘','url':'https://opendict.korean.go.kr/dictionary/view?sense_no='+sid}}]})
+    selected[label]=(priority,{'label':label,'reading':label,'aliases':[],'firstSyllable':label[0],'lastSyllable':label[-1], 'senses':[{'id':'opendict:'+sid,'category':'korean-phrase' if unit=='구' else 'korean-noun','definition':definition,'acceptanceReason':f'국립국어원 우리말샘에 {pos or unit}({kind})로 수록된 표제어입니다.','partOfSpeech':pos,'wordUnit':unit,'wordType':kind,'originalHeadword':word,'source':{'name':'국립국어원 우리말샘','url':'https://opendict.korean.go.kr/dictionary/view?sense_no='+sid}}]})
   e.clear();xmlroot.clear()
  print(p.name,len(selected),flush=True)
 entries=[selected[k][1] for k in sorted(selected)]
@@ -52,7 +52,7 @@ stats=json.loads((root/'data/stats.json').read_text());allentries=base['entries'
 categories=collections.Counter(c for e in allentries for c in {s['category'] for s in e['senses']})
 stats.update(version=version,uniqueEntries=len(allentries),senses=sum(len(e['senses']) for e in allentries),entriesByCategory=dict(categories),multiCategoryEntries=sum(len({s['category'] for s in e['senses']})>1 for e in allentries))
 (root/'data/stats.json').write_text(json.dumps(stats,ensure_ascii=False,indent=2)+'\n')
-report={'repository':'https://github.com/spellcheck-ko/korean-dict-nikl','commit':manifest['commit'],'sourceBuildDates':sorted(dates),'retrievedAt':datetime.date.today().isoformat(),'inputs':inputs,'counts':dict(counts),'addedUniqueEntries':len(entries),'totalUniqueEntries':len(allentries),'policy':'One or more modern Hangul syllables; noun-bearing parts of speech; prefer general-language first sense; preserve curated base; exclude explicitly incorrect spellings, examples and multimedia. One representative sense per added spelling.','license':'CC-BY-SA-2.0-KR'}
+report={'repository':'https://github.com/spellcheck-ko/korean-dict-nikl','commit':manifest['commit'],'sourceBuildDates':sorted(dates),'retrievedAt':datetime.date.today().isoformat(),'inputs':inputs,'counts':dict(counts),'addedUniqueEntries':len(entries),'totalUniqueEntries':len(allentries),'policy':'One or more modern Hangul syllables; noun-bearing parts of speech or dictionary phrase units; prefer general-language first sense; preserve curated base; exclude explicitly incorrect spellings, examples and multimedia. One representative sense per added spelling.','license':'CC-BY-SA-2.0-KR'}
 (root/'data/opendict-import-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-for word in ['비비','비수']:assert any(e['label']==word for e in allentries),word
+for word in ['비비','비수','수산화나트륨','염화나트륨','수산화칼륨','이리듐']:assert any(e['label']==word for e in allentries),word
 print(json.dumps(stats,ensure_ascii=False))

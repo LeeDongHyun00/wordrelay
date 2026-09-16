@@ -297,6 +297,7 @@ impl Game {
             ));
         }
         self.round = 0;
+        self.used.clear();
         self.round_results.clear();
         self.winner_ids.clear();
         for p in &mut self.players {
@@ -327,7 +328,6 @@ impl Game {
         self.round += 1;
         self.phase = Phase::Playing;
         self.accepted = 0;
-        self.used.clear();
         self.history.clear();
         self.winner_id = None;
         self.next_round_at = None;
@@ -478,10 +478,7 @@ impl Game {
             )
         })?;
         if self.used.contains(&next) {
-            return Err(err(
-                "ALREADY_USED",
-                "이미 나온 단어예요. 다른 단어를 입력해 주세요.",
-            ));
+            return Err(err("ALREADY_USED", "이번 게임에서 이미 사용한 단어입니다."));
         }
         let prev = self.previous.unwrap();
         if !d.follows(prev, next) {
@@ -510,10 +507,6 @@ impl Game {
             points,
         });
         self.notice = String::new();
-        if !d.has_next(next, &self.used) {
-            self.new_seed(d);
-            self.notice = "이어갈 단어가 없어 새 단어로 이어갑니다.".into();
-        }
         if self.phase == Phase::Playing {
             self.next_turn();
             self.begin_turn(now);
@@ -1011,7 +1004,7 @@ mod tests {
         );
     }
     #[test]
-    fn word_with_no_continuation_starts_a_new_chain_without_elimination() {
+    fn dead_end_answer_stays_visible_and_next_player_gets_their_turn() {
         let (mut g, now) = started(3);
         let d = dict();
         let seed = d.lookup("사과").unwrap();
@@ -1024,9 +1017,42 @@ mod tests {
         g.submit(&g.players[0].id.clone(), g.turn_id, "과자", d, now)
             .unwrap();
         assert_eq!(g.accepted, 1);
-        assert_ne!(g.previous, Some(next));
-        assert!(g.notice.contains("새 단어"));
+        assert_eq!(g.previous, Some(next));
+        assert!(g.notice.is_empty());
+        assert_eq!(g.turn, 1);
+        assert_eq!(g.history.last().unwrap().word.label, "과자");
+        assert!(g.history.last().unwrap().points > 0);
+        assert_eq!(g.phase, Phase::Playing);
+        assert!(g.deadline.unwrap() > now);
         assert!(g.players.iter().all(|p| p.alive));
+        g.timeout(d, g.deadline.unwrap());
+        assert_eq!(g.round_results[0].failed_id, Some(g.players[1].id.clone()));
+    }
+    #[test]
+    fn words_are_reserved_across_rounds_but_reset_for_a_new_game() {
+        let (mut g, now) = started(2);
+        let d = dict();
+        g.total_rounds = 2;
+        let seed = d.lookup("나비").unwrap();
+        let answer = d.lookup("비비").unwrap();
+        g.previous = Some(seed);
+        g.used.insert(seed);
+        g.submit(&g.players[0].id.clone(), g.turn_id, "비비", d, now)
+            .unwrap();
+        g.timeout(d, g.deadline.unwrap());
+        g.advance_round(d, g.next_round_at.unwrap());
+        assert!(g.used.contains(&seed));
+        assert!(g.used.contains(&answer));
+        assert_ne!(g.previous, Some(seed));
+        assert_ne!(g.previous, Some(answer));
+        let start = g.starts_at.unwrap();
+        let error = g
+            .submit(&g.players[g.turn].id.clone(), g.turn_id, "비비", d, start)
+            .unwrap_err();
+        assert_eq!(error.code, "ALREADY_USED");
+        g.timeout(d, g.deadline.unwrap());
+        g.rematch(&g.host_id.clone(), start).unwrap();
+        assert!(g.used.is_empty());
     }
     #[test]
     fn kicking_current_player_ends_round_once() {

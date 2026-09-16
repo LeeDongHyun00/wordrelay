@@ -166,3 +166,45 @@ test('four players: first timeout ends round and everyone returns for round two'
   assert(second.players.every(p=>p.alive));assert.equal(second.roundResults.length,1);
  }finally{for(const p of peers){if(p.ws.readyState===WebSocket.OPEN)p.send({type:'leave'});p.close();}}
 });
+
+test('phrases and dead ends stay accepted; used answers remain blocked next round', {timeout:60000},async()=>{
+ const peers=[];
+ try {
+  const host=await connect({type:'create',name:'용어검증'});peers.push(host);const h=await host.wait(m=>m.type==='welcome');
+  const guest=await connect({type:'join',code:h.code,name:'용어검증2'});peers.push(guest);const g=await guest.wait(m=>m.type==='welcome');const ids=[h.playerId,g.playerId];
+  await host.act({type:'configure',rounds:2},m=>m.type==='state'&&m.room.totalRounds===2);
+  for(let i=0;i<peers.length;i++)await peers[i].act({type:'ready',ready:true},m=>m.type==='state'&&m.room.players.find(p=>p.id===ids[i])?.ready);
+  await host.wait(m=>m.type==='state'&&m.room.canStart);
+  let room=(await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing')).room;
+  const used=new Set();
+  async function answer(target){
+   for(const h of room.history)used.add(h.word.reading);
+   const queue=room.currentWord.nextStarts.map(s=>({s,path:[]}));const seen=new Set(room.currentWord.nextStarts);let path;
+   for(let cursor=0;cursor<queue.length;cursor++){
+    const node=queue[cursor];if(node.s===target[0]){path=node.path;break;}
+    for(const e of byFirst.get(node.s)||[])if(!used.has(e.reading)&&!seen.has(e.lastSyllable)){
+     seen.add(e.lastSyllable);queue.push({s:e.lastSyllable,path:[...node.path,e]});
+    }
+   }
+   assert(path,'reachable path to '+target);
+   for(const word of [...path.map(e=>e.label),target]){
+    const peer=peers[ids.indexOf(room.turnPlayerId)],count=room.acceptedCount;
+    room=(await peer.act({type:'submit',word,turnId:room.turnId},m=>m.type==='state'&&m.room.acceptedCount===count+1)).room;
+    for(const h of room.history)used.add(h.word.reading);
+   }
+  }
+  await sleep(room.startsAt-Date.now()+40);await answer('수산화나트륨');
+  assert.equal(room.currentWord.label,'수산화나트륨');assert.equal(room.history.at(-1).word.label,'수산화나트륨');
+  assert(room.history.at(-1).points>0);assert.equal(room.currentWord.meanings[0].category,'korean-phrase');assert.equal(room.notice,'');
+  await host.wait(m=>m.type==='state'&&m.room.phase==='intermission',0,14000);
+  room=(await host.wait(m=>m.type==='state'&&m.room.phase==='playing'&&m.room.round===2,0,7000)).room;
+  assert(!used.has(room.currentWord.reading));await sleep(room.startsAt-Date.now()+40);
+  const peer=peers[ids.indexOf(room.turnPlayerId)];
+  assert.equal((await peer.act({type:'submit',word:'수산화 나트륨',turnId:room.turnId},m=>m.type==='error')).code,'ALREADY_USED');
+  await answer('이리듐');assert.equal(room.currentWord.label,'이리듐');assert.equal(room.history.at(-1).word.label,'이리듐');assert.equal(room.notice,'');
+  assert(room.history.at(-1).points>0);assert.deepEqual(room.currentWord.nextStarts,['듐']);
+  const failed=room.turnPlayerId;
+  const done=(await host.wait(m=>m.type==='state'&&m.room.phase==='finished',0,14000)).room;
+  assert.equal(done.roundResults.at(-1).failedId,failed);
+ }finally{for(const p of peers){if(p.ws.readyState===WebSocket.OPEN)p.send({type:'leave'});p.close();}}
+});

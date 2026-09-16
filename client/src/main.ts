@@ -12,7 +12,7 @@ type Session={code:string;playerId:string;token:string};
 const app=document.querySelector<HTMLDivElement>('#app')!;
 const icon=(name:string)=>({arrow:'↗',back:'←',link:'↗',check:'✓',close:'×',bolt:'↯',copy:'⧉'}[name]||'→');
 const escape=(s:unknown)=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
-const categories:Record<string,string>={'korean-noun':'국어 명사','lol-champion':'리그 오브 레전드','clash-royale-card':'클래시 로얄','anime-title':'애니메이션','game-title':'게임 제목','station-name':'역 이름'};
+const categories:Record<string,string>={'korean-noun':'국어 명사','korean-phrase':'국어 구','lol-champion':'리그 오브 레전드','clash-royale-card':'클래시 로얄','anime-title':'애니메이션','game-title':'게임 제목','station-name':'역 이름'};
 let room:Room|null=null,session:Session|null=null,ws:WebSocket|null=null;
 let connected=false,connecting=false,intentional=false,retry=0,reconnectTimer:number|undefined;
 let recoveryTimer:number|undefined;

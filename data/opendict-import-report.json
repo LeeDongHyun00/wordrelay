@@ -158,13 +158,13 @@
   ],
   "counts": {
     "sourceSenses": 1204559,
-    "excludedSpellingOrLength": 2965,
-    "excludedNonNoun": 620118,
-    "coveredByBase": 83957,
-    "excludedIncorrectSpelling": 24882
+    "excludedSpellingOrLength": 3983,
+    "excludedNonNounOrPhrase": 204919,
+    "coveredByBase": 83999,
+    "excludedIncorrectSpelling": 40509
   },
-  "addedUniqueEntries": 382608,
-  "totalUniqueEntries": 411845,
-  "policy": "One or more modern Hangul syllables; noun-bearing parts of speech; prefer general-language first sense; preserve curated base; exclude explicitly incorrect spellings, examples and multimedia. One representative sense per added spelling.",
+  "addedUniqueEntries": 772801,
+  "totalUniqueEntries": 802038,
+  "policy": "One or more modern Hangul syllables; noun-bearing parts of speech or dictionary phrase units; prefer general-language first sense; preserve curated base; exclude explicitly incorrect spellings, examples and multimedia. One representative sense per added spelling.",
   "license": "CC-BY-SA-2.0-KR"
 }

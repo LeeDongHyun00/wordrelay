@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
+use std::io::{Read, Seek, SeekFrom, Write};
 use std::sync::{Arc, Mutex, OnceLock};
 
 // A large dictionary repeats a small set of category, source and rule strings.
@@ -38,7 +39,7 @@ pub struct Entry {
     pub first_syllable: Arc<str>,
     #[serde(deserialize_with = "shared_text")]
     pub last_syllable: Arc<str>,
-    senses: Vec<Sense>,
+    senses: StoredMeanings,
 }
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -56,13 +57,87 @@ pub struct Source {
     name: Arc<str>,
     url: String,
 }
-#[derive(Clone, Serialize)]
+#[derive(Clone, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Meaning {
     category: Arc<str>,
     definition: String,
     reason: Arc<str>,
     source: Source,
+}
+// Keep lookup keys in memory; explanations are only needed for accepted words.
+// A process-private, unlinked file avoids retaining every long definition in RAM.
+fn meaning_store() -> std::io::Result<&'static Mutex<std::fs::File>> {
+    static STORE: OnceLock<std::io::Result<Mutex<std::fs::File>>> = OnceLock::new();
+    STORE
+        .get_or_init(|| {
+            let path =
+                std::env::temp_dir().join(format!("wordrelay-{}.meanings", uuid::Uuid::new_v4()));
+            let file = std::fs::OpenOptions::new()
+                .read(true)
+                .write(true)
+                .create_new(true)
+                .open(&path)?;
+            std::fs::remove_file(path)?;
+            Ok(Mutex::new(file))
+        })
+        .as_ref()
+        .map_err(|e| std::io::Error::new(e.kind(), e.to_string()))
+}
+struct StoredMeanings {
+    offset: u64,
+    length: usize,
+    empty: bool,
+}
+impl StoredMeanings {
+    fn is_empty(&self) -> bool {
+        self.empty
+    }
+    fn read(&self) -> Vec<Meaning> {
+        let mut bytes = vec![0; self.length];
+        {
+            let mut file = meaning_store()
+                .expect("dictionary meaning store")
+                .lock()
+                .unwrap();
+            file.seek(SeekFrom::Start(self.offset))
+                .expect("dictionary meaning offset");
+            file.read_exact(&mut bytes)
+                .expect("dictionary meaning read");
+        }
+        serde_json::from_slice(&bytes).expect("validated dictionary meaning")
+    }
+}
+impl<'de> Deserialize<'de> for StoredMeanings {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let senses = Vec::<Sense>::deserialize(deserializer)?;
+        let mut categories = HashSet::new();
+        let meanings: Vec<_> = senses
+            .into_iter()
+            .filter(|s| categories.insert(s.category.clone()))
+            .take(5)
+            .map(|s| Meaning {
+                category: s.category,
+                definition: s.definition.chars().take(350).collect(),
+                reason: s.acceptance_reason,
+                source: s.source,
+            })
+            .collect();
+        let bytes = serde_json::to_vec(&meanings).map_err(serde::de::Error::custom)?;
+        let mut file = meaning_store()
+            .map_err(serde::de::Error::custom)?
+            .lock()
+            .unwrap();
+        let offset = file
+            .seek(SeekFrom::End(0))
+            .map_err(serde::de::Error::custom)?;
+        file.write_all(&bytes).map_err(serde::de::Error::custom)?;
+        Ok(Self {
+            offset,
+            length: bytes.len(),
+            empty: meanings.is_empty(),
+        })
+    }
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -193,17 +268,7 @@ impl Dictionary {
             .any(|s| {
                 self.first
                     .get(s)
-                    .is_some_and(|ids| ids.iter().any(|i| !used.contains(i)))
-            })
-    }
-    fn has_unused_successor(&self, word: usize, used: &HashSet<usize>) -> bool {
-        allowed_starts(&self.entries[word].last_syllable)
-            .iter()
-            .any(|s| {
-                self.first.get(s).is_some_and(|ids| {
-                    ids.iter()
-                        .any(|&next| next != word && !used.contains(&next))
-                })
+                    .is_some_and(|ids| ids.iter().any(|i| *i != prev && !used.contains(i)))
             })
     }
     pub fn seed(&self, used: &HashSet<usize>) -> Option<usize> {
@@ -214,27 +279,14 @@ impl Dictionary {
             .skip(offset % self.seeds.len().max(1))
             .take(self.seeds.len())
             .copied()
-            .find(|i| !used.contains(i) && self.has_unused_successor(*i, used))
+            .find(|i| !used.contains(i) && self.has_next(*i, used))
             .or_else(|| {
-                (0..self.entries.len())
-                    .find(|i| !used.contains(i) && self.has_unused_successor(*i, used))
+                (0..self.entries.len()).find(|i| !used.contains(i) && self.has_next(*i, used))
             })
     }
     pub fn word(&self, i: usize) -> Word {
         let e = &self.entries[i];
-        let mut categories = HashSet::new();
-        let meanings = e
-            .senses
-            .iter()
-            .filter(|s| categories.insert(s.category.clone()))
-            .take(5)
-            .map(|s| Meaning {
-                category: s.category.clone(),
-                definition: s.definition.chars().take(350).collect(),
-                reason: s.acceptance_reason.clone(),
-                source: s.source.clone(),
-            })
-            .collect();
+        let meanings = e.senses.read();
         Word {
             label: e.label.clone(),
             reading: e.reading.clone(),
@@ -274,7 +326,19 @@ mod tests {
     #[test]
     fn normalization_and_real_dictionary() {
         let d = Dictionary::load("data/dictionary.json").unwrap();
-        for word in ["사과", "아리", "원펀맨", "아처", "쉔", "비비", "비수"] {
+        for word in [
+            "사과",
+            "아리",
+            "원펀맨",
+            "아처",
+            "쉔",
+            "비비",
+            "비수",
+            "수산화나트륨",
+            "수산화칼륨",
+            "염화나트륨",
+            "이리듐",
+        ] {
             assert!(d.lookup(word).is_some());
         }
         for name in ["비비", "비수"] {
@@ -294,6 +358,19 @@ mod tests {
         );
         assert!(d.follows(d.lookup("나비").unwrap(), d.lookup("비비").unwrap()));
         assert!(d.follows(d.lookup("비비").unwrap(), d.lookup("비수").unwrap()));
+        for word in ["수산화나트륨", "수산화칼륨", "염화나트륨"] {
+            let index = d.lookup(word).unwrap();
+            let meaning = d.word(index);
+            assert_eq!(meaning.meanings[0].category.as_ref(), "korean-phrase");
+            assert!(!meaning.meanings[0].definition.is_empty());
+            assert!(
+                meaning.meanings[0]
+                    .source
+                    .url
+                    .starts_with("https://opendict.korean.go.kr/")
+            );
+        }
+        assert_eq!(d.lookup("수산화 나트륨"), d.lookup("수산화나트륨"));
         assert!(d.seeds.len() > 10_000);
         let mut used = HashSet::new();
         for _ in 0..100 {
