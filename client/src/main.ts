@@ -34,6 +34,7 @@ function connect(request:object){
     if(ws!==socket)return;
     let message:any;try{message=JSON.parse(data);}catch{return;}
     if(message.type==='welcome'){
+      if(session?.code!==message.code)lastAlertTurn=-1;
       clearTimeout(recoveryTimer);recoveryTimer=undefined;
       session={code:message.code,playerId:message.playerId,token:message.token};joinCode=session.code;
       sessionStorage.setItem('wordrelay-session',JSON.stringify(session));
@@ -67,7 +68,7 @@ function connect(request:object){
   };
   socket.onerror=()=>socket.close();
 }
-function returnHome(){clearTimeout(recoveryTimer);recoveryTimer=undefined;document.title='이어 — 실시간 끝말잇기';intentional=true;clearTimeout(reconnectTimer);ws?.close();ws=null;session=null;room=null;connected=false;connecting=false;joinCode='';qrCache='';qrCode='';wordError='';wordDraft='';composing=false;submitAfterComposition=false;pendingTurn=null;sessionStorage.removeItem('wordrelay-session');history.replaceState(null,'',location.pathname);render();}
+function returnHome(){lastAlertTurn=-1;clearTimeout(recoveryTimer);recoveryTimer=undefined;document.title='이어 — 실시간 끝말잇기';intentional=true;clearTimeout(reconnectTimer);ws?.close();ws=null;session=null;room=null;connected=false;connecting=false;joinCode='';qrCache='';qrCode='';wordError='';wordDraft='';composing=false;submitAfterComposition=false;pendingTurn=null;sessionStorage.removeItem('wordrelay-session');history.replaceState(null,'',location.pathname);render();}
 function inviteUrl(){const u=new URL(publicOrigin||location.origin);u.searchParams.set('room',room?.code||joinCode);return u.toString();}
 async function updateQr(){
   if(!room||room.phase!=='lobby')return;
