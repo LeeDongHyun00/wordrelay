@@ -123,6 +123,7 @@ impl Dictionary {
             entries: Vec<Entry>,
         }
         for name in &data.supplements {
+            tracing::info!(file=%name, "loading dictionary supplement");
             let file = std::path::Path::new(path)
                 .parent()
                 .unwrap_or(std::path::Path::new("."))
@@ -130,6 +131,10 @@ impl Dictionary {
             let decoder =
                 flate2::read::GzDecoder::new(std::io::BufReader::new(std::fs::File::open(file)?));
             let supplement: Supplement = serde_json::from_reader(std::io::BufReader::new(decoder))?;
+            tracing::info!(
+                words = supplement.entries.len(),
+                "dictionary supplement parsed"
+            );
             data.entries.extend(supplement.entries);
         }
         let mut keys = HashMap::new();

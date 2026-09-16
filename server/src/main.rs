@@ -386,6 +386,7 @@ async fn main() {
                 .unwrap_or_else(|_| "wordrelay=info".into()),
         )
         .init();
+    tracing::info!("starting dictionary load");
     let dict = Arc::new(
         Dictionary::load(
             &std::env::var("DICTIONARY_PATH").unwrap_or("data/dictionary.json".into()),
