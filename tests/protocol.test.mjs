@@ -103,9 +103,16 @@ test('two rounds advance automatically; totals persist; disconnected seat expire
 test('server expires a silent connection without waiting for TCP close', {timeout:12000},async()=>{
  const host=await connect({type:'create',name:'호스트'});const h=await host.wait(m=>m.type==='welcome');
  const guest=await connect({type:'join',code:h.code,name:'신호없음'});const g=await guest.wait(m=>m.type==='welcome');
- try {clearInterval(guest.heartbeat);const after=host.events.length;const start=Date.now();
+ try {
+ // Welcome is sent on the guest socket; the host can still receive its older
+ // one-player snapshot afterward. Observe membership before testing removal.
+ await host.wait(m=>m.type==='state'&&m.room.players.some(p=>p.id===g.playerId));
+ clearInterval(guest.heartbeat);
+ // Establish a fresh server lease before measuring the silent interval.
+ await guest.act({type:'ping',sentAt:Date.now()},m=>m.type==='pong');
+ const after=host.events.length;const start=performance.now();
  const state=(await host.wait(m=>m.type==='state'&&!m.room.players.some(p=>p.id===g.playerId),after,8500)).room;
- assert(Date.now()-start>=5000);assert.equal(state.players.length,1);
+ assert(performance.now()-start>=5000);assert.equal(state.players.length,1);
  }finally{host.close();guest.close();}
 });
 
