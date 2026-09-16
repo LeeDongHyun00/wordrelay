@@ -1,0 +1,79 @@
+[
+  {
+    "label": "시청역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "성수역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "강변역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "잠실역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "삼성역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "강남역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "신림역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "대림역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "신촌역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "영등포구청역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "신설동역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  }
+]

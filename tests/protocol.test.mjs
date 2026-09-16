@@ -54,3 +54,17 @@ test('real WebSockets: four players, ready, countdown, 55 answers, floor, resume
   console.log('Verified 55 consecutive accepted answers: 6000ms → 1000ms; four synchronized clients.');
  }finally{for(const p of clients)p.close();}
 });
+
+test('host kick removes a guest, rejects forged authority and invalidates resume', {timeout:15000},async()=>{
+ const peers=[];
+ try {
+  const host=await connect({type:'create',name:'방장'});peers.push(host);const h=await host.wait(m=>m.type==='welcome');
+  const guest=await connect({type:'join',code:h.code,name:'참가자'});peers.push(guest);const g=await guest.wait(m=>m.type==='welcome');
+  assert.equal((await guest.act({type:'kick',playerId:h.playerId},m=>m.type==='error')).code,'HOST_ONLY');
+  assert.equal((await host.act({type:'kick',playerId:h.playerId},m=>m.type==='error')).code,'CANNOT_KICK_SELF');
+  const result=await host.act({type:'kick',playerId:g.playerId},m=>m.type==='state'&&m.room.players.length===1);
+  assert.equal(result.room.canStart,false);await guest.wait(m=>m.type==='kicked');
+  const resume=await connect({type:'join',code:h.code,name:'복귀',token:g.token});peers.push(resume);
+  assert.equal((await resume.wait(m=>m.type==='error')).code,'SESSION_EXPIRED');
+ } finally {for(const p of peers)p.close();}
+});

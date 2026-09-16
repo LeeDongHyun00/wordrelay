@@ -60,6 +60,9 @@ enum ClientMessage {
         word: String,
         turn_id: u64,
     },
+    Kick {
+        player_id: String,
+    },
     Rematch,
     Leave,
     Ping {
@@ -154,6 +157,13 @@ async fn run_room(app: Arc<App>, code: String, mut rx: mpsc::Receiver<Command>) 
                             ClientMessage::Ready{ready}=>game.ready(&id,ready,now),
                             ClientMessage::Start=>game.start(&id,&app.dict,now),
                             ClientMessage::Submit{word,turn_id}=>game.submit(&id,turn_id,&word,&app.dict,now),
+                            ClientMessage::Kick{player_id}=>{
+                                let result=game.kick(&id,&player_id,&app.dict,now);
+                                if result.is_ok() && let Some(c)=clients.remove(&player_id) {
+                                    let _=c.out.try_send(event(json!({"type":"kicked","message":"방장에 의해 강퇴되었습니다."})));
+                                }
+                                result
+                            }
                             ClientMessage::Rematch=>game.rematch(&id,now),
                             ClientMessage::Leave=>{
                                 if let Some(c)=clients.remove(&id) {let _=c.out.try_send(event(json!({"type":"left"})));}

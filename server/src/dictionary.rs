@@ -196,6 +196,22 @@ impl Dictionary {
 mod tests {
     use super::*;
     #[test]
+    fn registered_station_names_have_explanations_and_chain_to_yeok() {
+        let d = Dictionary::load("data/dictionary.json").unwrap();
+        for name in ["서울역", "부산역", "강남역", "홍대입구역"] {
+            let i = d.lookup(name).unwrap();
+            assert_eq!(d.entries[i].last_syllable, "역");
+            assert!(
+                d.word(i)
+                    .meanings
+                    .iter()
+                    .any(|m| m.category == "station-name" && !m.definition.is_empty())
+            );
+            assert!(d.follows(i, d.lookup("역사").unwrap()));
+        }
+        assert!(d.lookup("존재하지않는가짜역").is_none());
+    }
+    #[test]
     fn dueum_is_forward_only() {
         assert_eq!(allowed_starts("력"), vec!["력", "역"]);
         assert_eq!(allowed_starts("락"), vec!["락", "낙"]);

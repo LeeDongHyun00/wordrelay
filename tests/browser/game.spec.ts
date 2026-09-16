@@ -30,7 +30,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  const initial=(await active.getByTestId('current-word').innerText()).replace(/\s/g,'');
  const next=data.entries.find((e:any)=>starts.includes(e.firstSyllable)&&e.reading!==initial);
  await active.getByLabel('끝말잇기 단어').fill('등록되지않은단어쀍쀍');
- await active.getByRole('button',{name:'입력',exact:false}).click();
+ await active.locator('#word-input').press('Enter');
  await expect(active.getByRole('alert')).toContainText('정답이 아닙니다');
  await expect(active.locator('#word-input')).toHaveAttribute('aria-invalid','true');
  await expect(active.locator('#word-input')).toHaveValue('등록되지않은단어쀍쀍');
@@ -38,13 +38,17 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await expect(active.locator('.round-label')).toHaveText('0 WORDS CONNECTED');
  await active.getByLabel('끝말잇기 단어').fill(next.label);
  await active.locator('#word-input').dispatchEvent('compositionstart');
- await active.locator('#word-form').evaluate((form:HTMLFormElement)=>form.requestSubmit());
+ await active.locator('#word-input').dispatchEvent('keydown',{key:'Enter',isComposing:true});
  await expect(active.locator('.round-label')).toHaveText('0 WORDS CONNECTED');
  await active.locator('#word-input').dispatchEvent('compositionend');
- await active.waitForTimeout(100);
- await active.getByRole('button',{name:'입력',exact:false}).click();
+
  await expect(active.getByRole('alert')).toHaveCount(0);
  await expect(host.locator('.round-label')).toHaveText('1 WORDS CONNECTED');await expect(guest.locator('.round-label')).toHaveText('1 WORDS CONNECTED');
+ const other=active===host?guest:host;
+ await other.locator('#word-input').fill('없는단어쀍');
+ await expect(other.locator('#word-input')).toHaveAttribute('enterkeyhint','send');
+ await other.locator('#word-input').evaluate(el=>el.dispatchEvent(new InputEvent('beforeinput',{inputType:'insertLineBreak',bubbles:true,cancelable:true})));
+ await expect(other.getByRole('alert')).toContainText('정답이 아닙니다');
  await host.locator('.dictionary-panel summary').click();await expect(host.locator('.meaning-list article').first()).toBeVisible();
  await host.screenshot({path:'test-results/game-desktop.png',fullPage:true});await guest.screenshot({path:'test-results/game-mobile.png',fullPage:true});
  await guest.reload();await expect(guest.locator('.arena')).toBeVisible();await expect(host.locator('.player-card')).toHaveCount(2);
@@ -60,4 +64,21 @@ test('mobile home and invalid invitation',async({page})=>{
  await page.getByLabel('닉네임').fill('친구');await page.getByRole('button',{name:'이 방에 입장하기'}).click();
  await expect(page.getByRole('status')).toContainText('방을 찾을 수 없어요');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
+});
+
+test('host can kick a guest and guest returns home without reconnecting',async({browser})=>{
+ const a=await browser.newContext(),b=await browser.newContext();
+ const host=await a.newPage(),guest=await b.newPage();
+ await host.goto('/');await host.getByLabel('닉네임').fill('방장');await host.getByRole('button',{name:'새로운 방 만들기'}).click();
+ await expect(host.getByRole('heading',{name:'대기방'})).toBeVisible();
+ await guest.goto(host.url());await guest.getByLabel('닉네임').fill('손님');await guest.getByRole('button',{name:'이 방에 입장하기'}).click();
+ await expect(host.getByRole('button',{name:'손님 강퇴'})).toBeVisible();
+ await expect(guest.locator('.kick-button')).toHaveCount(0);
+ host.once('dialog',d=>d.accept());await host.getByRole('button',{name:'손님 강퇴'}).click();
+ await expect(guest.getByRole('heading',{name:'끝말잇기'})).toBeVisible();
+ await expect(guest.getByRole('status')).toContainText('강퇴');
+ expect(await guest.evaluate(()=>sessionStorage.getItem('wordrelay-session'))).toBeNull();
+ await expect(host.locator('.player-card:not(.empty)')).toHaveCount(1);
+ await guest.reload();await expect(guest.getByRole('heading',{name:'끝말잇기'})).toBeVisible();
+ await a.close();await b.close();
 });

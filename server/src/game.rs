@@ -182,6 +182,24 @@ impl Game {
             self.host_id = p.id.clone()
         }
     }
+    pub fn kick(&mut self, id: &str, target: &str, d: &Dictionary, now: Instant) -> Result<()> {
+        if self.host_id != id
+            || !self
+                .players
+                .iter()
+                .any(|p| p.id == id && p.connected && !p.left)
+        {
+            return Err(err("HOST_ONLY", "방장만 강퇴할 수 있습니다."));
+        }
+        if id == target {
+            return Err(err("CANNOT_KICK_SELF", "자신은 강퇴할 수 없습니다."));
+        }
+        if !self.players.iter().any(|p| p.id == target && !p.left) {
+            return Err(err("NOT_MEMBER", "방 참가자가 아닙니다."));
+        }
+        self.disconnect(target, true, d, now);
+        Ok(())
+    }
     pub fn ready(&mut self, id: &str, ready: bool, now: Instant) -> Result<()> {
         if self.phase != Phase::Lobby {
             return Err(err("NOT_LOBBY", "대기방에서만 준비할 수 있어요."));
@@ -710,6 +728,24 @@ mod tests {
         assert_ne!(g.previous, Some(next));
         assert!(g.notice.contains("새 단어"));
         assert!(g.players.iter().all(|p| p.alive));
+    }
+    #[test]
+    fn kicking_current_player_advances_and_last_survivor_wins() {
+        let (mut g, now) = started(3);
+        let host = g.host_id.clone();
+        g.turn = 1;
+        let target = g.players[1].id.clone();
+        let token = g.players[1].token.clone();
+        let old_turn = g.turn_id;
+        g.kick(&host, &target, dict(), now).unwrap();
+        assert!(g.players[1].left);
+        assert_eq!(g.turn, 2);
+        assert!(g.turn_id > old_turn);
+        assert!(g.attach("복귀", Some(&token), now).is_err());
+        let last = g.players[2].id.clone();
+        g.kick(&host, &last, dict(), now).unwrap();
+        assert_eq!(g.phase, Phase::Finished);
+        assert_eq!(g.winner_id, Some(host));
     }
     #[test]
     fn snapshots_never_expose_session_tokens() {

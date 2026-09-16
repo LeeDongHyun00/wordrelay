@@ -1,0 +1,2947 @@
+[
+  {
+    "label": "가능역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=1"
+  },
+  {
+    "label": "가산디지털단지역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=1"
+  },
+  {
+    "label": "가수원역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=1"
+  },
+  {
+    "label": "가야역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=1"
+  },
+  {
+    "label": "가좌역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=1"
+  },
+  {
+    "label": "가천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=1"
+  },
+  {
+    "label": "가천대역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=1"
+  },
+  {
+    "label": "가평역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=1"
+  },
+  {
+    "label": "각계역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "간석역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "갈매역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "감곡역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "강경역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "강구역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "강남구청역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "강릉역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "강매역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=2"
+  },
+  {
+    "label": "강진역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "강촌역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "개봉역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "개운역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "개운포역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "개태사역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "개포역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "개포동역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "거제역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=3"
+  },
+  {
+    "label": "거제해맞이역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "거촌역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "경강역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "경기광주역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "경마공원역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "경산역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "경주역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "경화역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "계룡역",
+    "regionOrLine": "호남선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "고막원역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=4"
+  },
+  {
+    "label": "고사리역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "고색역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "고잔역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "고한역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "곡산역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "곡성역",
+    "regionOrLine": "전라선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "곤지암역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "공덕역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "공전역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=5"
+  },
+  {
+    "label": "공주역",
+    "regionOrLine": "호남선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=6"
+  },
+  {
+    "label": "과천역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=6"
+  },
+  {
+    "label": "관악역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=6"
+  },
+  {
+    "label": "관촌역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=6"
+  },
+  {
+    "label": "광곡역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=6"
+  },
+  {
+    "label": "광명역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=6"
+  },
+  {
+    "label": "광양역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=6"
+  },
+  {
+    "label": "광운대역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "광주역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "광주송정역",
+    "regionOrLine": "호남선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "광천역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "교대역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "구례구역",
+    "regionOrLine": "전라선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "구로역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "구룡역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "구리역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=7"
+  },
+  {
+    "label": "구미역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "구성역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "구일역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "구절리역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "구포역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "국수역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "군북역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "군산역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "군포역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=8"
+  },
+  {
+    "label": "굴봉산역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=9"
+  },
+  {
+    "label": "극락강역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=9"
+  },
+  {
+    "label": "금강역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=9"
+  },
+  {
+    "label": "금곡역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=9"
+  },
+  {
+    "label": "금릉역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=9"
+  },
+  {
+    "label": "금정역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=9"
+  },
+  {
+    "label": "금지역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=9"
+  },
+  {
+    "label": "금천구청역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=10"
+  },
+  {
+    "label": "금촌역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=10"
+  },
+  {
+    "label": "기장역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=10"
+  },
+  {
+    "label": "기흥역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=10"
+  },
+  {
+    "label": "김유정역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=10"
+  },
+  {
+    "label": "김제역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=10"
+  },
+  {
+    "label": "김천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=10"
+  },
+  {
+    "label": "김천구미역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=10"
+  },
+  {
+    "label": "나전역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=11"
+  },
+  {
+    "label": "나주역",
+    "regionOrLine": "호남선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=11"
+  },
+  {
+    "label": "낙동강역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=11"
+  },
+  {
+    "label": "남동인더스파크역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=11"
+  },
+  {
+    "label": "남성현역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=11"
+  },
+  {
+    "label": "남영역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=11"
+  },
+  {
+    "label": "남원역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=11"
+  },
+  {
+    "label": "남창역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=11"
+  },
+  {
+    "label": "남춘천역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "남평역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "남포역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "내수역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "노량진역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "노령역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "노안역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "녹양역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "녹천역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=12"
+  },
+  {
+    "label": "논산역",
+    "regionOrLine": "호남선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=13"
+  },
+  {
+    "label": "능곡역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=13"
+  },
+  {
+    "label": "능주역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=13"
+  },
+  {
+    "label": "다시역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=13"
+  },
+  {
+    "label": "단양역",
+    "regionOrLine": "중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=13"
+  },
+  {
+    "label": "달미역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=13"
+  },
+  {
+    "label": "달월역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=13"
+  },
+  {
+    "label": "달천역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=13"
+  },
+  {
+    "label": "당정역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=14"
+  },
+  {
+    "label": "대곡역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=14"
+  },
+  {
+    "label": "대공원역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=14"
+  },
+  {
+    "label": "대광리역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=14"
+  },
+  {
+    "label": "대구역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=14"
+  },
+  {
+    "label": "대모산입구역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=14"
+  },
+  {
+    "label": "대방역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=14"
+  },
+  {
+    "label": "대성리역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=14"
+  },
+  {
+    "label": "대야역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "대야미역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "대전역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "대천역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "대화역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "덕계역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "덕산역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "덕소역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "덕양역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=15"
+  },
+  {
+    "label": "덕정역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=16"
+  },
+  {
+    "label": "덕하역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=16"
+  },
+  {
+    "label": "도계역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=16"
+  },
+  {
+    "label": "도고온천역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=16"
+  },
+  {
+    "label": "도곡역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=16"
+  },
+  {
+    "label": "도농역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=16"
+  },
+  {
+    "label": "도담역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=16"
+  },
+  {
+    "label": "도라산역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=16"
+  },
+  {
+    "label": "도봉역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "도봉산역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "도심역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "도안역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "도원역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "도화역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "독산역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "동대구역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "동두천역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=17"
+  },
+  {
+    "label": "동두천중앙역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "동래역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "동량역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "동산역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "동암역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "동운역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "동인천역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "동점역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "동해역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=18"
+  },
+  {
+    "label": "두정역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=19"
+  },
+  {
+    "label": "둔내역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=19"
+  },
+  {
+    "label": "득량역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=19"
+  },
+  {
+    "label": "디지털미디어시티역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=19"
+  },
+  {
+    "label": "마두역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=19"
+  },
+  {
+    "label": "마산역",
+    "regionOrLine": "경전선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=19"
+  },
+  {
+    "label": "마석역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=19"
+  },
+  {
+    "label": "마차리역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=19"
+  },
+  {
+    "label": "만종역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=20"
+  },
+  {
+    "label": "망양역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=20"
+  },
+  {
+    "label": "망우역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=20"
+  },
+  {
+    "label": "망월사역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=20"
+  },
+  {
+    "label": "망포역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=20"
+  },
+  {
+    "label": "매교역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=20"
+  },
+  {
+    "label": "매탄권선역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=20"
+  },
+  {
+    "label": "매포역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=20"
+  },
+  {
+    "label": "명학역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "모란역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "목포역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "목행역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "몽탄역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "무안역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "묵호역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "문곡역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "문산역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=21"
+  },
+  {
+    "label": "물금역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "미금역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "미로역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "민둥산역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "밀양역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "반성역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "반야월역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "반월역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "방학역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=22"
+  },
+  {
+    "label": "배방역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "백마역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "백산역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "백석역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "백양리역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "백양사역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "백운역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "백원역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "범계역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=23"
+  },
+  {
+    "label": "범일역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "법전역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "벡스코역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "별내역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "병점역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "보산역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "보성역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "보정역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "보천역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "복정역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=24"
+  },
+  {
+    "label": "봉림역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "봉명역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "봉성역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "봉양역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "봉정역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "봉화역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "부강역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "부개역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "부발역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "부산역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=25"
+  },
+  {
+    "label": "부산원동역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "부산진역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "부용역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "부전역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "부조역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "부천역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "부평역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "북영천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "북울산역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=26"
+  },
+  {
+    "label": "북천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "분천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "사곡역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "사릉역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "사리역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "사북역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "사상역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "산본역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "산성역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=27"
+  },
+  {
+    "label": "산인역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삼곡역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삼동역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삼랑진역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삼례역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삼릉역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삼산역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삼성역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삼송역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "삽교역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=28"
+  },
+  {
+    "label": "상갈역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "상동역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "상록수역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "상봉역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "상정역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "상주역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "상천역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "서경주역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "서광주역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=29"
+  },
+  {
+    "label": "서대전역",
+    "regionOrLine": "호남선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=30"
+  },
+  {
+    "label": "서도역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=30"
+  },
+  {
+    "label": "서동탄역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=30"
+  },
+  {
+    "label": "서빙고역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=30"
+  },
+  {
+    "label": "서생역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=30"
+  },
+  {
+    "label": "서울역",
+    "regionOrLine": "중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=30"
+  },
+  {
+    "label": "서울숲역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=31"
+  },
+  {
+    "label": "서원주역",
+    "regionOrLine": "중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=31"
+  },
+  {
+    "label": "서정리역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=31"
+  },
+  {
+    "label": "서천역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=31"
+  },
+  {
+    "label": "서현역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=31"
+  },
+  {
+    "label": "석계역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=31"
+  },
+  {
+    "label": "석불역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=31"
+  },
+  {
+    "label": "석수역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=31"
+  },
+  {
+    "label": "석포역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "석항역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "선릉역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "선바위역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "선부역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "선정릉역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "선평역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "성균관대역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "성산역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "성주사역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=32"
+  },
+  {
+    "label": "성환역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "세류역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "세마역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "세종대왕릉역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "센텀역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "소래포구역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "소사역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "소새울역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "소요산역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=33"
+  },
+  {
+    "label": "소이역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=34"
+  },
+  {
+    "label": "송내역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=34"
+  },
+  {
+    "label": "송도역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=34"
+  },
+  {
+    "label": "송정역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=34"
+  },
+  {
+    "label": "송천역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=34"
+  },
+  {
+    "label": "송추역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=34"
+  },
+  {
+    "label": "송탄역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=34"
+  },
+  {
+    "label": "수내역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=35"
+  },
+  {
+    "label": "수리산역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=35"
+  },
+  {
+    "label": "수색역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=35"
+  },
+  {
+    "label": "수서역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=35"
+  },
+  {
+    "label": "수원역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=35"
+  },
+  {
+    "label": "수원시청역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=35"
+  },
+  {
+    "label": "순천역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "숭의역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "승부역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "시우역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "시흥능곡역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "시흥대야역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "시흥시청역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "신갈역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "신기역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=36"
+  },
+  {
+    "label": "신길역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신길온천역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신내역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신녕역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신도림역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신동역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신둔도예촌역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신례원역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신리역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신성역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=37"
+  },
+  {
+    "label": "신원역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "신이문역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "신창역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "신천역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "신탄리역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "신탄진역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "신태인역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "신포역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "신해운대역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=38"
+  },
+  {
+    "label": "쌍룡역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=39"
+  },
+  {
+    "label": "쌍용역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=39"
+  },
+  {
+    "label": "아산역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=39"
+  },
+  {
+    "label": "아신역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=39"
+  },
+  {
+    "label": "아우라지역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=39"
+  },
+  {
+    "label": "아포역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=39"
+  },
+  {
+    "label": "아화역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=39"
+  },
+  {
+    "label": "안강역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "안동역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "안락역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "안산역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "안양역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "안평역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "압구정로데오역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "압록역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "야당역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=40"
+  },
+  {
+    "label": "야목역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "야탑역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "약목역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "양동역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "양수역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "양원역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "양정역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "양주역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "양평역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=41"
+  },
+  {
+    "label": "어등역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=42"
+  },
+  {
+    "label": "어천역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=42"
+  },
+  {
+    "label": "여수엑스포역",
+    "regionOrLine": "전라선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=42"
+  },
+  {
+    "label": "여주역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=42"
+  },
+  {
+    "label": "여천역",
+    "regionOrLine": "전라선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=42"
+  },
+  {
+    "label": "역곡역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=42"
+  },
+  {
+    "label": "연산역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "연수역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "연천역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "연하역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "연화역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "영덕역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "영동역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "영등포역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "영월역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=43"
+  },
+  {
+    "label": "영주역",
+    "regionOrLine": "중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "영천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "영통역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "예당역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "예미역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "예산역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "예천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "오가역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "오근장역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=44"
+  },
+  {
+    "label": "오류동역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=45"
+  },
+  {
+    "label": "오리역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=45"
+  },
+  {
+    "label": "오목천역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=45"
+  },
+  {
+    "label": "오빈역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=45"
+  },
+  {
+    "label": "오산역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=45"
+  },
+  {
+    "label": "오산대역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=45"
+  },
+  {
+    "label": "오송역",
+    "regionOrLine": "호남선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=45"
+  },
+  {
+    "label": "오수역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=46"
+  },
+  {
+    "label": "오시리아역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=46"
+  },
+  {
+    "label": "오이도역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=46"
+  },
+  {
+    "label": "옥곡역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=46"
+  },
+  {
+    "label": "옥산역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=46"
+  },
+  {
+    "label": "옥수역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=46"
+  },
+  {
+    "label": "옥천역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=46"
+  },
+  {
+    "label": "온수역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=46"
+  },
+  {
+    "label": "온양온천역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=47"
+  },
+  {
+    "label": "옹정역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=47"
+  },
+  {
+    "label": "와룡역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=47"
+  },
+  {
+    "label": "완사역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=47"
+  },
+  {
+    "label": "왕십리역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=47"
+  },
+  {
+    "label": "왜관역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=47"
+  },
+  {
+    "label": "외대앞역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=47"
+  },
+  {
+    "label": "용궁역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=47"
+  },
+  {
+    "label": "용동역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=48"
+  },
+  {
+    "label": "용문역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=48"
+  },
+  {
+    "label": "용산역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=48"
+  },
+  {
+    "label": "우보역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=48"
+  },
+  {
+    "label": "운길산역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=48"
+  },
+  {
+    "label": "운정역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=48"
+  },
+  {
+    "label": "운천역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=48"
+  },
+  {
+    "label": "울산역",
+    "regionOrLine": "경부선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "웅천역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "원당역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "원덕역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "원동역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "원릉역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "원시역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "원인재역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "원주역",
+    "regionOrLine": "중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=49"
+  },
+  {
+    "label": "원죽역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "원흥역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "월계역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "월곶역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "월내역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "월롱역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "월포역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "율촌역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "음성역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=50"
+  },
+  {
+    "label": "응봉역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=51"
+  },
+  {
+    "label": "의성역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=51"
+  },
+  {
+    "label": "의왕역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=51"
+  },
+  {
+    "label": "의정부역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=51"
+  },
+  {
+    "label": "이매역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=51"
+  },
+  {
+    "label": "이양역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=51"
+  },
+  {
+    "label": "이원역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=51"
+  },
+  {
+    "label": "이천역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=52"
+  },
+  {
+    "label": "이촌역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=52"
+  },
+  {
+    "label": "익산역",
+    "regionOrLine": "전라선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=52"
+  },
+  {
+    "label": "인덕원역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=52"
+  },
+  {
+    "label": "인천역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=52"
+  },
+  {
+    "label": "인천논현역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=52"
+  },
+  {
+    "label": "인하대역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=52"
+  },
+  {
+    "label": "일광역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=52"
+  },
+  {
+    "label": "일로역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=53"
+  },
+  {
+    "label": "일산역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=53"
+  },
+  {
+    "label": "일신역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=53"
+  },
+  {
+    "label": "일영역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=53"
+  },
+  {
+    "label": "임곡역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=53"
+  },
+  {
+    "label": "임기역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=53"
+  },
+  {
+    "label": "임성리역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=53"
+  },
+  {
+    "label": "임실역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=53"
+  },
+  {
+    "label": "임진강역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "임피역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "입석리역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "장사역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "장성역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "장항역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "재송역",
+    "regionOrLine": "동해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "전곡역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "전의역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=54"
+  },
+  {
+    "label": "전주역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=55"
+  },
+  {
+    "label": "점촌역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=55"
+  },
+  {
+    "label": "정동진역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=55"
+  },
+  {
+    "label": "정발산역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=55"
+  },
+  {
+    "label": "정부과천청사역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=55"
+  },
+  {
+    "label": "정선역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=55"
+  },
+  {
+    "label": "정왕역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=55"
+  },
+  {
+    "label": "정읍역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=55"
+  },
+  {
+    "label": "정자역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=56"
+  },
+  {
+    "label": "제물포역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=56"
+  },
+  {
+    "label": "제천역",
+    "regionOrLine": "중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=56"
+  },
+  {
+    "label": "조치원역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=56"
+  },
+  {
+    "label": "좌천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=56"
+  },
+  {
+    "label": "주교역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=56"
+  },
+  {
+    "label": "주덕역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=56"
+  },
+  {
+    "label": "주생역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=56"
+  },
+  {
+    "label": "주안역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "주엽역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "주포역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "죽령역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "죽전역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "중동역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "중랑역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "중리역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "중앙역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=57"
+  },
+  {
+    "label": "증평역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "지천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "지축역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "지탄역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "지평역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "지행역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "직산역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "직지사역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "진례역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=58"
+  },
+  {
+    "label": "진부역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=59"
+  },
+  {
+    "label": "진상역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=59"
+  },
+  {
+    "label": "진영역",
+    "regionOrLine": "경전선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=59"
+  },
+  {
+    "label": "진위역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=59"
+  },
+  {
+    "label": "진주역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=59"
+  },
+  {
+    "label": "진해역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=59"
+  },
+  {
+    "label": "창동역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=59"
+  },
+  {
+    "label": "창원역",
+    "regionOrLine": "경전선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=59"
+  },
+  {
+    "label": "창원중앙역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=60"
+  },
+  {
+    "label": "천마산역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=60"
+  },
+  {
+    "label": "천안역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=60"
+  },
+  {
+    "label": "천안아산역",
+    "regionOrLine": "경전선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=60"
+  },
+  {
+    "label": "천원역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=60"
+  },
+  {
+    "label": "철암역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=61"
+  },
+  {
+    "label": "청도역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=61"
+  },
+  {
+    "label": "청량리역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=61"
+  },
+  {
+    "label": "청령역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=61"
+  },
+  {
+    "label": "청리역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=61"
+  },
+  {
+    "label": "청명역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=61"
+  },
+  {
+    "label": "청소역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=61"
+  },
+  {
+    "label": "청주역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=61"
+  },
+  {
+    "label": "청주공항역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "청천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "청평역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "초강역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "초월역",
+    "regionOrLine": "경강선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "초지역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "추전역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "추풍령역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "춘양역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=62"
+  },
+  {
+    "label": "춘천역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=63"
+  },
+  {
+    "label": "충주역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=63"
+  },
+  {
+    "label": "탄현역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=63"
+  },
+  {
+    "label": "탕정역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=63"
+  },
+  {
+    "label": "태백역",
+    "regionOrLine": "강원권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=63"
+  },
+  {
+    "label": "태평역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=63"
+  },
+  {
+    "label": "태화강역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=63"
+  },
+  {
+    "label": "퇴계원역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=63"
+  },
+  {
+    "label": "파주역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=64"
+  },
+  {
+    "label": "판교역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=64"
+  },
+  {
+    "label": "팔당역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=64"
+  },
+  {
+    "label": "평내호평역",
+    "regionOrLine": "경춘선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=64"
+  },
+  {
+    "label": "평창역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=64"
+  },
+  {
+    "label": "평촌역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=64"
+  },
+  {
+    "label": "평택역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=64"
+  },
+  {
+    "label": "평택지제역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=65"
+  },
+  {
+    "label": "포항역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=65"
+  },
+  {
+    "label": "풍기역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=65"
+  },
+  {
+    "label": "풍산역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=65"
+  },
+  {
+    "label": "하남역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=65"
+  },
+  {
+    "label": "하동역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=65"
+  },
+  {
+    "label": "하양역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=65"
+  },
+  {
+    "label": "학성역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "한남역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "한대앞역",
+    "regionOrLine": "4호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "한림정역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "한티역",
+    "regionOrLine": "수인분당",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "함안역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "함열역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "함창역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "함평역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "행신역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=66"
+  },
+  {
+    "label": "현동역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=67"
+  },
+  {
+    "label": "호계역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=67"
+  },
+  {
+    "label": "호구포역",
+    "regionOrLine": "서해선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=67"
+  },
+  {
+    "label": "홍대입구역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=67"
+  },
+  {
+    "label": "홍성역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=67"
+  },
+  {
+    "label": "화명역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=67"
+  },
+  {
+    "label": "화본역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "화산역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "화서역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "화순역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "화양역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "화전역",
+    "regionOrLine": "수도권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "화정역",
+    "regionOrLine": "3호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "황간역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "회기역",
+    "regionOrLine": "경의중앙선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=68"
+  },
+  {
+    "label": "회덕역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=69"
+  },
+  {
+    "label": "회룡역",
+    "regionOrLine": "1호선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=69"
+  },
+  {
+    "label": "횡성역",
+    "regionOrLine": "강릉선",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=69"
+  },
+  {
+    "label": "횡천역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=69"
+  },
+  {
+    "label": "효문역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=69"
+  },
+  {
+    "label": "효자역",
+    "regionOrLine": "경상권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=69"
+  },
+  {
+    "label": "효천역",
+    "regionOrLine": "전라권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=69"
+  },
+  {
+    "label": "흑석리역",
+    "regionOrLine": "충청권",
+    "sourceUrl": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp?pageNo=69"
+  },
+  {
+    "label": "시청역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "성수역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "강변역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "잠실역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "강남역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "신림역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "대림역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "신촌역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "영등포구청역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  },
+  {
+    "label": "신설동역",
+    "regionOrLine": "서울 지하철 2호선",
+    "sourceUrl": "https://mediahub.seoul.go.kr/archives/187867",
+    "sourceName": "서울특별시 · 지하철 안내",
+    "provider": "서울특별시"
+  }
+]

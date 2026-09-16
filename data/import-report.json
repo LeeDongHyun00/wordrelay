@@ -89,5 +89,12 @@
     "011.xml": 0
   },
   "importedSenseCount": 37334,
-  "niklSnapshotCreatedAt": "2026-06-19 12:38:52"
+  "niklSnapshotCreatedAt": "2026-06-19 12:38:52",
+  "stationImport": {
+    "source": "https://www.kric.go.kr/jsp/board/portal/sub05/est/estationList.jsp",
+    "pages": 69,
+    "rows": 586,
+    "uniqueStations": 585,
+    "retrievedAt": "2026-09-16"
+  }
 }
