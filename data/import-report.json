@@ -1,0 +1,93 @@
+{
+  "excluded": {
+    "nonHangulNoun": 52
+  },
+  "inputs": [
+    {
+      "file": "001.xml",
+      "sha256": "6afb7140dba366f26cd0ea9939e988b9cd7e92ad791cdf48882d9a970461542b",
+      "bytes": 35392707
+    },
+    {
+      "file": "002.xml",
+      "sha256": "767c025e635ff564f069f9883a9c7f90f11a90027539dc3f91ef86145d9d6a59",
+      "bytes": 37465175
+    },
+    {
+      "file": "003.xml",
+      "sha256": "4f4e9cc63335552f0328823ea5ce71ded3235638036bfa9ba55f8f55c092bba8",
+      "bytes": 37904619
+    },
+    {
+      "file": "004.xml",
+      "sha256": "8f81f9746d1f36002a3b70f2b709e3fa4d0aab97f2d8a2e0f6db4e75fe1c4970",
+      "bytes": 36639953
+    },
+    {
+      "file": "005.xml",
+      "sha256": "d4335b24fb3cc6de4b738dd1ebd91b866f201b0949ebb76ee3eb78022e988dbb",
+      "bytes": 35255124
+    },
+    {
+      "file": "006.xml",
+      "sha256": "91f6624556499121907c7aba5e04542b2b4493e95a11ebc46a80ffe8f53d55fa",
+      "bytes": 34337097
+    },
+    {
+      "file": "007.xml",
+      "sha256": "eb13f91d3560d2a5542eeb67e99d2382df18b4e4811c460d97e816b54ca41254",
+      "bytes": 35752932
+    },
+    {
+      "file": "008.xml",
+      "sha256": "e2ecaa74595a74b4bea7b8e1f84a61c095772a6f7153290c7af9c9f633ed69e3",
+      "bytes": 34828439
+    },
+    {
+      "file": "009.xml",
+      "sha256": "66508a3725cbd572777bfc9130304f90e2cadd6d2372a8cbdd2e73572160b23b",
+      "bytes": 35891857
+    },
+    {
+      "file": "010.xml",
+      "sha256": "c79c3835fc50f16fbec8a465631d16d382823789edc7b0f0ba287424d9d1f36b",
+      "bytes": 36579799
+    },
+    {
+      "file": "011.xml",
+      "sha256": "5129db19f52b58970a8eea7614824ef7a1fe1ab0edced7aa8f72f2c7912aa7d6",
+      "bytes": 26415723
+    },
+    {
+      "file": "lol.json",
+      "sha256": "3b69731c80293143b81ffd5c0a8a8c09f2b27405cb80d46384b749e2d5e3e0ba",
+      "bytes": 55730
+    },
+    {
+      "file": "cards_i18n.json",
+      "sha256": "eb328c08e8542cbfce0d7d692d8acfcdda8d56c1bfc7dbf8bb31dc5c98c5de8d",
+      "bytes": 684203
+    },
+    {
+      "file": "anime-list.json",
+      "sha256": "d1c51493ed8b0cd3a30ee0e7ff6cf43f6fe09f28ea567febbf9cc870e0470324",
+      "bytes": 76471
+    }
+  ],
+  "niklCommit": "42c0d01889f34536e9cf94fe57f62bd2055b1bde",
+  "xmlControlCharactersRemoved": {
+    "001.xml": 2,
+    "002.xml": 1,
+    "003.xml": 1,
+    "004.xml": 0,
+    "005.xml": 3,
+    "006.xml": 0,
+    "007.xml": 0,
+    "008.xml": 0,
+    "009.xml": 0,
+    "010.xml": 0,
+    "011.xml": 0
+  },
+  "importedSenseCount": 37334,
+  "niklSnapshotCreatedAt": "2026-06-19 12:38:52"
+}

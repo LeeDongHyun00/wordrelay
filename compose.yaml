@@ -1,0 +1,11 @@
+services:
+  wordrelay:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      BIND_ADDR: 0.0.0.0:3000
+      RUST_LOG: wordrelay=info
+      # HTTPS 배포 시 PUBLIC_ORIGIN을 설정하세요. 예: https://word.example.com
+      # PUBLIC_ORIGIN: https://word.example.com
