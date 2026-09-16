@@ -34,10 +34,14 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  const initial=(await active.getByTestId('current-word').innerText()).replace(/\s/g,'');
  const next=data.entries.find((e:any)=>starts.includes(e.firstSyllable)&&e.reading!==initial);
  await active.getByLabel('끝말잇기 단어').fill('등록되지않은단어쀍쀍');
+ const formBefore=await active.locator('.word-form').boundingBox();
  await active.locator('#word-input').press('Enter');
  await expect(active.getByRole('alert')).toContainText('정답이 아닙니다');
  await expect(active.locator('#word-input')).toHaveAttribute('aria-invalid','true');
  await expect(active.locator('.arena')).toHaveClass(/impact-error/);
+ const formAfter=await active.locator('.word-form').boundingBox();
+ expect(Math.abs(formAfter!.y-formBefore!.y)).toBeLessThan(1);
+ await expect(active.locator('#word-input')).toBeEnabled();
  await expect(active.locator('#word-input')).toHaveValue('등록되지않은단어쀍쀍');
  await active.screenshot({path:'test-results/invalid-answer.png',fullPage:true});
  await expect(active.locator('.history-panel .section-title > span')).toHaveText('0개 성공');
@@ -49,6 +53,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
 
  await expect(active.getByRole('alert')).toHaveCount(0);
  await expect(host.locator('.arena')).toHaveClass(/impact-success/);
+ expect(await host.evaluate(()=>document.getAnimations().every(a=>{const t=a.effect!.getTiming();return t.iterations!==Infinity&&Number(t.duration)<=600;}))).toBe(true);
  await expect(host.locator('.history-panel .section-title > span')).toHaveText('1개 성공');await expect(guest.locator('.history-panel .section-title > span')).toHaveText('1개 성공');
  const other=active===host?guest:host;
  await other.locator('#word-input').fill('없는단어쀍');

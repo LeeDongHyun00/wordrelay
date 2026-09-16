@@ -1,40 +1,63 @@
 const preference = matchMedia('(prefers-reduced-motion: reduce)');
-const spring = 'cubic-bezier(.16,1,.3,1)';
-function move(el: Element|null, frames: Keyframe[], duration=460, delay=0) {
+const settle = 'cubic-bezier(.2,.8,.2,1)';
+const active = new Set<Animation>();
+function move(el: Element|null, frames: Keyframe[], duration=240, delay=0, easing=settle) {
   if (!el || preference.matches) return;
-  el.animate(frames, {duration, delay, easing:spring});
+  const animation=el.animate(frames,{duration,delay,easing,fill:'backwards'});
+  active.add(animation);
+  const release=()=>active.delete(animation);
+  animation.addEventListener('finish',release,{once:true});
+  animation.addEventListener('cancel',release,{once:true});
+  return animation;
 }
+// Rendering replaces elements. Cancel their animations rather than retaining
+// detached targets or allowing feedback from an old turn to linger.
+export function clearMotion() {
+  for(const animation of active)animation.cancel();
+  active.clear();
+}
+preference.addEventListener('change',()=>{if(preference.matches)clearMotion();});
 export function enterView(root: HTMLElement) {
-  move(root.querySelector('main'), [{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],520);
-  root.querySelectorAll('.player-card, .result-players > div').forEach((el,i)=>
-    move(el,[{opacity:0,transform:'translateY(9px) scale(.98)'},{opacity:1,transform:'translateY(0) scale(1)'}],440,i*35));
+  move(root.querySelector('main'),[{opacity:.6,transform:'translateY(6px)'},{opacity:1,transform:'none'}],280);
+  // Only results need a sequence; input and player controls appear together.
+  root.querySelectorAll('.result-players > div').forEach((el,i)=>
+    move(el,[{opacity:.5,transform:'translateY(5px)'},{opacity:1,transform:'none'}],240,i*25));
 }
-export function turnMotion(root: HTMLElement) {
-  move(root.querySelector('.turn-banner'),[{opacity:.5,transform:'translateY(-6px)'},{opacity:1,transform:'translateY(0)'}]);
-  move(root.querySelector('.player-card.current'),[{transform:'scale(.975)'},{transform:'scale(1)'}],520);
+export function turnMotion(root: HTMLElement, quiet=false) {
+  // During successful answers the word already moves; highlight the recipient
+  // without also moving the banner or the whole board.
+  if(!quiet)move(root.querySelector('.turn-banner'),[{opacity:.55},{opacity:1}],180);
+  move(root.querySelector('.player-card.current'),[
+    {boxShadow:'0 0 0 0 #9ac14d00'},
+    {boxShadow:'0 0 0 3px #9ac14d55',offset:.3},
+    {boxShadow:'0 0 0 0 #9ac14d00'}],360);
 }
-export function feedbackMotion(root: HTMLElement, kind:'success'|'error', points=0) {
-  if (preference.matches) return;
-  if (kind==='error') {
-    move(root.querySelector('.word-form'),[{transform:'translateX(0)'},{transform:'translateX(-7px)',offset:.2},{transform:'translateX(5px)',offset:.4},{transform:'translateX(-3px)',offset:.65},{transform:'translateX(0)'}],380);
-    move(root.querySelector('.word-error'),[{opacity:0,transform:'translateY(-5px) scale(.98)'},{opacity:1,transform:'translateY(0) scale(1)'}],300);
-    root.querySelector('.arena')?.classList.add('impact-error');
+export function feedbackMotion(root: HTMLElement, kind:'success'|'error', points=0, playerId:string|null=null) {
+  if(preference.matches)return;
+  root.querySelector('.arena')?.classList.add(kind==='success'?'impact-success':'impact-error');
+  if(kind==='error'){
+    move(root.querySelector('#word-input'),[
+      {transform:'translateX(0)'},{transform:'translateX(-4px)',offset:.2},
+      {transform:'translateX(3px)',offset:.45},{transform:'translateX(-1px)',offset:.7},
+      {transform:'translateX(0)'}],220,0,'ease-in-out');
+    move(root.querySelector('.word-error'),[{opacity:0,transform:'translateY(-3px)'},{opacity:1,transform:'none'}],180);
     return;
   }
-  root.querySelector('.arena')?.classList.add('impact-success');
-  root.querySelectorAll('.word-glyph').forEach((el,i)=>move(el,[
-    {opacity:.2,transform:'translateY(12px) scale(.88)'},
-    {opacity:1,transform:'translateY(-2px) scale(1.04)',offset:.6},
-    {opacity:1,transform:'translateY(0) scale(1)'}],480,Math.min(i,20)*15));
-  move(root.querySelector('.next-letter-panel .word-prompt b'),[{transform:'scale(.9)'},{transform:'scale(1.04)',offset:.55},{transform:'scale(1)'}],540);
-  move(root.querySelector('.history-item.latest'),[{opacity:0,transform:'translateX(-12px)'},{opacity:1,transform:'translateX(0)'}]);
-  const arena=root.querySelector('.arena');
-  if(arena&&points){const label=document.createElement('span');label.className='impact-points';label.textContent=`+${points}`;label.setAttribute('aria-hidden','true');arena.append(label);
-    const animation=label.animate([{opacity:0,transform:'translate(-50%,8px) scale(.8)'},{opacity:1,transform:'translate(-50%,-8px) scale(1)',offset:.25},{opacity:0,transform:'translate(-50%,-40px) scale(.95)'}],{duration:850,easing:'ease-out'});animation.onfinish=()=>label.remove();}
+  const glyphs=root.querySelectorAll('.word-glyph');
+  glyphs.forEach((el,i)=>move(el,[{opacity:.5,transform:'translateY(5px)'},{opacity:1,transform:'none'}],220,glyphs.length>1?i/(glyphs.length-1)*50:0));
+  move(root.querySelector('.next-letter-panel .word-prompt b'),[{transform:'scale(.97)'},{transform:'scale(1)'}],240);
+  move(root.querySelector('.history-item.latest'),[{opacity:.5,transform:'translateX(-5px)'},{opacity:1,transform:'none'}],200);
+  const player=Array.from(root.querySelectorAll<HTMLElement>('[data-player]')).find(el=>el.dataset.player===playerId);
+  if(player&&points){
+    const label=document.createElement('span');label.className='impact-points';label.textContent=`+${points}`;label.setAttribute('aria-hidden','true');player.append(label);
+    const animation=move(label,[{opacity:0,transform:'translate(-50%,4px)'},{opacity:1,transform:'translate(-50%,-2px)',offset:.18},{opacity:1,transform:'translate(-50%,-6px)',offset:.65},{opacity:0,transform:'translate(-50%,-12px)'}],600,0,'ease-out');
+    const remove=()=>label.remove();animation?.addEventListener('finish',remove,{once:true});animation?.addEventListener('cancel',remove,{once:true});
+    move(player.querySelector('.score'),[{color:'#8caf39'},{color:'#2d4617'}],320);
+  }
 }
 export function changedPlayer(el:Element|null) {
-  move(el,[{transform:'scale(.97)',opacity:.7},{transform:'scale(1)',opacity:1}],380);
+  move(el,[{opacity:.65},{opacity:1}],180);
 }
 export function disclosure(el:HTMLDetailsElement) {
-  if(el.open)move(el.querySelector('.meaning-list')||el.querySelector('p'),[{opacity:0,transform:'translateY(-5px)'},{opacity:1,transform:'translateY(0)'}],300);
+  if(el.open)move(el.querySelector('.meaning-list')||el.querySelector('p'),[{opacity:0,transform:'translateY(-3px)'},{opacity:1,transform:'none'}],180);
 }

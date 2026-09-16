@@ -37,11 +37,11 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #75
 .arena[data-timer=critical] .timer{color:#c44e44}.arena[data-timer=critical] .timer strong{transform:scale(1.06)}
 .arena[data-timer=critical] #time-progress{background:#d56659;box-shadow:0 0 18px #d5665970}
 .arena[data-timer=critical]{border-color:#d68a75;box-shadow:0 0 0 4px #e7b4a524,0 12px 40px #c45c420b}
-.arena::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;opacity:0}
-.arena.impact-success::after{background:radial-gradient(ellipse at 50% 45%,#bde97b35,transparent 70%);animation:impact-light .6s ease-out}
-.arena.impact-error::after{background:radial-gradient(ellipse at 50% 65%,#f7b5a52b,transparent 75%);animation:impact-light .4s ease-out}
-.impact-points{position:absolute;left:50%;top:36%;font-size:23px;font-weight:750;color:#537d26;pointer-events:none;z-index:3;opacity:0;text-shadow:0 2px 12px #fff}
+.impact-points{position:absolute;left:50%;top:calc(100% - 16px);font-size:14px;font-weight:750;color:#385c15;background:#f2fadf;border:1px solid #d6e6b7;border-radius:20px;padding:3px 9px;white-space:nowrap;pointer-events:none;z-index:3;opacity:0}
 .expand-icon{transition:transform .3s var(--motion-ease)}.toast{transition:opacity .25s,transform .4s var(--motion-ease)}
-@keyframes impact-light{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+
 @media(max-width:760px){.turn-meta{font-size:10px;line-height:1.5}.timer-label{font-size:11px}.word-glyph{max-width:100%}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.arena[data-timer=critical] .timer strong{transform:none}}
+
+/* Keep answer controls stationary while feedback appears below them. */
+.word-form+.word-error{margin-top:12px}.word-form input{will-change:auto}.timer strong{min-width:4ch}.timer .seconds{min-width:3ch}.player-card{overflow:visible}
