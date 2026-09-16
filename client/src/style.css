@@ -18,3 +18,30 @@
 .penalty-note{display:block!important;color:#876342!important;font-size:10px!important;margin-top:4px}.turn-meta{max-width:68%;text-align:right;line-height:1.5}
 
 .game-players .score{display:block;position:static;grid-column:1/-1;text-align:center;font-size:17px;font-weight:800;color:#2d4617;margin-top:7px}.game-players .score small{font-size:10px}.game-players .score .penalty-note{font-weight:500}@media(max-width:760px){.game-players .score{font-size:14px}}
+/* Motion follows state changes, so heartbeat and clock paints never replay entrances. */
+:root{--motion-ease:cubic-bezier(.16,1,.3,1)}
+button,a,input,select{transition:background .22s,color .22s,border-color .22s,box-shadow .3s,transform .3s var(--motion-ease)}
+button:active:not(:disabled){transform:scale(.965)}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #759c3b;outline-offset:4px}
+.entry-card,.invite-card,.result-card{box-shadow:0 8px 32px #25331c08,0 1px 3px #25331c05}
+.player-card{transition:border-color .3s,box-shadow .3s,background .3s}.player-card.current{box-shadow:0 4px 20px #738b241a}
+.arena{position:relative;isolation:isolate;transition:border-color .5s,box-shadow .5s;background:#ffffffed}
+.my-turn .turn-banner{animation:none}.word-error{animation:none}
+.word-glyph{display:inline-block;white-space:pre-wrap;transform-origin:center 70%}.current-word{overflow-wrap:anywhere}
+.timer{color:#243719;transition:color .5s var(--motion-ease)}
+.timer strong{font-variant-numeric:tabular-nums;display:inline-block;min-width:3.4ch;letter-spacing:-.06em;transition:transform .7s var(--motion-ease);animation:none!important}
+.timer-label{transition:color .4s}.timer .seconds{opacity:.5}
+.time-track{height:7px;overflow:hidden;background:#eef0e9;border-radius:20px}
+#time-progress{transition:background .6s,box-shadow .6s;will-change:transform;border-radius:20px;background:#8ab63d}
+.arena[data-timer=slow] .timer{color:#ad6b17}.arena[data-timer=slow] #time-progress{background:#d69b46;box-shadow:0 0 15px #d69b4650}
+.arena[data-timer=critical] .timer{color:#c44e44}.arena[data-timer=critical] .timer strong{transform:scale(1.06)}
+.arena[data-timer=critical] #time-progress{background:#d56659;box-shadow:0 0 18px #d5665970}
+.arena[data-timer=critical]{border-color:#d68a75;box-shadow:0 0 0 4px #e7b4a524,0 12px 40px #c45c420b}
+.arena::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;opacity:0}
+.arena.impact-success::after{background:radial-gradient(ellipse at 50% 45%,#bde97b35,transparent 70%);animation:impact-light .6s ease-out}
+.arena.impact-error::after{background:radial-gradient(ellipse at 50% 65%,#f7b5a52b,transparent 75%);animation:impact-light .4s ease-out}
+.impact-points{position:absolute;left:50%;top:36%;font-size:23px;font-weight:750;color:#537d26;pointer-events:none;z-index:3;opacity:0;text-shadow:0 2px 12px #fff}
+.expand-icon{transition:transform .3s var(--motion-ease)}.toast{transition:opacity .25s,transform .4s var(--motion-ease)}
+@keyframes impact-light{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+@media(max-width:760px){.turn-meta{font-size:10px;line-height:1.5}.timer-label{font-size:11px}.word-glyph{max-width:100%}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.arena[data-timer=critical] .timer strong{transform:none}}

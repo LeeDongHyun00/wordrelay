@@ -35,6 +35,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await active.locator('#word-input').press('Enter');
  await expect(active.getByRole('alert')).toContainText('정답이 아닙니다');
  await expect(active.locator('#word-input')).toHaveAttribute('aria-invalid','true');
+ await expect(active.locator('.arena')).toHaveClass(/impact-error/);
  await expect(active.locator('#word-input')).toHaveValue('등록되지않은단어쀍쀍');
  await active.screenshot({path:'test-results/invalid-answer.png',fullPage:true});
  await expect(active.locator('.round-label')).toHaveText('0 WORDS CONNECTED');
@@ -45,6 +46,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await active.locator('#word-input').dispatchEvent('compositionend');
 
  await expect(active.getByRole('alert')).toHaveCount(0);
+ await expect(host.locator('.arena')).toHaveClass(/impact-success/);
  await expect(host.locator('.round-label')).toHaveText('1 WORDS CONNECTED');await expect(guest.locator('.round-label')).toHaveText('1 WORDS CONNECTED');
  const other=active===host?guest:host;
  await other.locator('#word-input').fill('없는단어쀍');
@@ -54,7 +56,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await host.locator('.dictionary-panel summary').click();await expect(host.locator('.meaning-list article').first()).toBeVisible();
  await host.screenshot({path:'test-results/game-desktop.png',fullPage:true});await guest.screenshot({path:'test-results/game-mobile.png',fullPage:true});
  await guest.reload();await expect(guest.locator('.arena, .result-card')).toBeVisible();await expect(host.locator('.player-card, .result-players > div')).toHaveCount(2);
- await expect(host.locator('.result-card')).toBeVisible({timeout:10000});await expect(guest.locator('.result-card')).toBeVisible();
+ await expect(host.locator('.result-card')).toBeVisible({timeout:14000});await expect(guest.locator('.result-card')).toBeVisible();
  await host.screenshot({path:'test-results/result-desktop.png',fullPage:true});
  expect(errors).toEqual([]);
  const overflow=await guest.evaluate(()=>document.documentElement.scrollWidth>innerWidth);expect(overflow).toBe(false);
@@ -94,7 +96,13 @@ test('two rounds show automatic transition, cumulative scoreboard and final winn
  await expect(guest.getByLabel('라운드 수')).toHaveValue('2');await expect(guest.getByLabel('라운드 수')).toBeDisabled();
  await host.getByRole('button',{name:'준비하기',exact:true}).click();await guest.getByRole('button',{name:'준비하기',exact:true}).click();await host.getByRole('button',{name:'게임 시작'}).click();
  await expect(host.locator('.turn-banner')).toContainText('1 / 2 라운드');
- await expect(host.locator('.round-countdown')).toBeVisible({timeout:12000});
+ await expect(host.locator('.arena')).toHaveAttribute('data-timer','slow',{timeout:10000});
+ await expect(host.locator('#timer-label')).toContainText('½속도');
+ await expect(host.locator('.arena')).toHaveAttribute('data-timer','critical',{timeout:4000});
+ await expect(host.locator('#timer-label')).toContainText('¼속도');
+ await expect(host.locator('#time-value')).toHaveText(/0\.\d{2}/);
+ await host.screenshot({path:'test-results/slow-timer.png',fullPage:true});
+ await expect(host.locator('.round-countdown')).toBeVisible({timeout:16000});
  await host.screenshot({path:'test-results/round-result.png',fullPage:true});
  await expect(host.locator('.turn-banner')).toContainText('2 / 2 라운드',{timeout:7000});
  await expect(host.locator('.result-card h1')).toContainText('우승',{timeout:14000});
@@ -113,4 +121,11 @@ test('offline recovery ejects after six seconds',async({browser})=>{
  await expect(host.locator('.player-card:not(.empty)')).toHaveCount(1,{timeout:8500});
  await b.setOffline(false);expect(await guest.evaluate(()=>sessionStorage.getItem('wordrelay-session'))).toBeNull();
  await a.close();await b.close();
+});
+
+
+test('reduced motion preserves layout without animations',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
+ await expect(page.getByRole('heading',{name:'끝말잇기'})).toBeVisible();
+ expect(await page.evaluate(()=>document.getAnimations().filter(a=>a.playState==='running').length)).toBe(0);
 });

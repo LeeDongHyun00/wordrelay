@@ -1,8 +1,11 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {gunzipSync} from 'node:zlib';
 const url=process.env.WS_URL||'ws://127.0.0.1:3000/ws';
 const dict=JSON.parse(readFileSync(new URL('../data/dictionary.json',import.meta.url),'utf8'));
+for(const file of dict.supplements||[])dict.entries=dict.entries.concat(JSON.parse(gunzipSync(readFileSync(new URL('../data/'+file,import.meta.url))).toString()).entries);
+const byFirst=new Map();for(const e of dict.entries){if(!byFirst.has(e.firstSyllable))byFirst.set(e.firstSyllable,[]);byFirst.get(e.firstSyllable).push(e);}
 const clients=[];
 class Peer {
  constructor(){this.ws=new WebSocket(url);this.heartbeat=setInterval(()=>{if(this.ws.readyState===WebSocket.OPEN)this.send({type:'ping',sentAt:Date.now()});},1000);this.ws.addEventListener('close',()=>clearInterval(this.heartbeat));this.events=[];this.pending=[];clients.push(this);this.ws.addEventListener('message',e=>{const m=JSON.parse(e.data);this.events.push(m);for(const wake of this.pending.splice(0))wake();});}
@@ -14,7 +17,7 @@ class Peer {
 }
 async function connect(message){const p=new Peer();await p.open();p.send(message);return p;}
 const sleep=ms=>new Promise(r=>setTimeout(r,Math.max(0,ms)));
-test('real WebSockets: four players, ready, countdown, 55 answers, floor, resume, eliminate, rematch', {timeout:40000},async()=>{
+test('real WebSockets: four players, ready, countdown, 55 answers, floor, resume, round end, rematch', {timeout:40000},async()=>{
  try{
   const a=await connect({type:'create',name:'방장'});const welcome=await a.wait(m=>m.type==='welcome');const code=welcome.code;
   const peers=[a];const ids=[welcome.playerId];const welcomes=[welcome];
@@ -34,7 +37,8 @@ test('real WebSockets: four players, ready, countdown, 55 answers, floor, resume
   const used=new Set(room.history.map(h=>h.word.reading));
   for(let i=1;i<=55;i++){
    for(const h of room.history)used.add(h.word.reading);
-   const word=dict.entries.find(e=>room.currentWord.nextStarts.includes(e.firstSyllable)&&!used.has(e.reading));assert(word);
+   const candidates=room.currentWord.nextStarts.flatMap(s=>byFirst.get(s)||[]).filter(e=>!used.has(e.reading));
+   const word=candidates.sort((a,b)=>(byFirst.get(b.lastSyllable)?.length||0)-(byFirst.get(a.lastSyllable)?.length||0))[0];assert(word);
    const p=peers[ids.indexOf(room.turnPlayerId)];
    const response=await p.act({type:'submit',word:word.label,turnId:room.turnId},m=>m.type==='state'&&m.room.acceptedCount===i);
    room=response.room;used.add(word.reading);assert.equal(room.turnDurationMs,Math.max(1000,6000-i*100));
@@ -47,7 +51,7 @@ test('real WebSockets: four players, ready, countdown, 55 answers, floor, resume
   assert.equal(restored.players.length,4);assert.equal(restored.players.find(p=>p.id===old.id).name,old.name);
   assert(Math.abs(restored.deadline-oldDeadline)<20);assert.equal(restored.acceptedCount,55);
   const finished=(await reconnect.wait(m=>m.type==='state'&&m.room.phase==='finished',0,8000)).room;
-  assert.equal(finished.players.filter(p=>p.alive&&!p.left).length,1);assert(finished.winnerId);
+  assert.equal(finished.players.filter(p=>p.alive&&!p.left).length,3);assert(finished.winnerIds.length);assert.equal(finished.roundResults[0].winnerIds.length,3);
   assert.equal(finished.turnDurationMs,1000);
   const hostId=finished.hostId;const host=hostId===resumed.playerId?reconnect:peers[ids.indexOf(hostId)];
   const reset=(await host.act({type:'rematch'},m=>m.type==='state'&&m.room.phase==='lobby')).room;
@@ -71,7 +75,7 @@ test('host kick removes a guest, rejects forged authority and invalidates resume
 });
 
 
-test('two rounds advance automatically; totals persist; disconnected seat expires after six seconds', {timeout:45000},async()=>{
+test('two rounds advance automatically; totals persist; disconnected seat expires after six seconds', {timeout:60000},async()=>{
  const peers=[];
  try{
   const host=await connect({type:'create',name:'방장'});peers.push(host);const h=await host.wait(m=>m.type==='welcome');
@@ -80,11 +84,11 @@ test('two rounds advance automatically; totals persist; disconnected seat expire
   await host.act({type:'configure',rounds:2},m=>m.type==='state'&&m.room.totalRounds===2);
   for(const p of peers)await p.act({type:'ready',ready:true},m=>m.type==='state');
   await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing');
-  const between=(await host.wait(m=>m.type==='state'&&m.room.phase==='intermission',0,12000)).room;
+  const between=(await host.wait(m=>m.type==='state'&&m.room.phase==='intermission',0,16000)).room;
   assert.equal(between.round,1);assert.equal(between.roundResults.length,1);assert.equal(between.players.reduce((sum,p)=>sum+p.score,0),300);
   const second=(await host.wait(m=>m.type==='state'&&m.room.round===2&&m.room.phase==='playing',0,6000)).room;
   assert.equal(second.turnDurationMs,6000);assert.equal(second.acceptedCount,0);assert(second.players.every(p=>p.alive));assert.equal(second.players.reduce((sum,p)=>sum+p.score,0),300);
-  const final=(await host.wait(m=>m.type==='state'&&m.room.phase==='finished',0,12000)).room;
+  const final=(await host.wait(m=>m.type==='state'&&m.room.phase==='finished',0,16000)).room;
   assert.equal(final.roundResults.length,2);assert.equal(final.players.reduce((sum,p)=>sum+p.score,0),600);
   const best=Math.max(...final.players.map(p=>p.score));assert.deepEqual(new Set(final.winnerIds),new Set(final.players.filter(p=>p.score===best).map(p=>p.id)));
   await host.act({type:'rematch'},m=>m.type==='state'&&m.room.phase==='lobby');
@@ -116,9 +120,9 @@ test('expanded dictionary accepts 비비 and 비수 with sourced explanations', 
   for(const p of peers)await p.act({type:'ready',ready:true},m=>m.type==='state'&&m.room.players.some(x=>x.ready));
   let room=(await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing')).room;
   await sleep(room.startsAt-Date.now()+60);
-  const queue=room.currentWord.nextStarts.map(s=>({s,path:[]}));const seen=new Set();let path;
-  while(queue.length){const node=queue.shift();if(node.s==='비'){path=node.path;break;}if(seen.has(node.s))continue;seen.add(node.s);
-   for(const e of dict.entries)if(e.firstSyllable===node.s&&e.reading!==room.currentWord.reading)queue.push({s:e.lastSyllable,path:[...node.path,e.label]});
+  const queue=room.currentWord.nextStarts.map(s=>({s,path:[]}));const seen=new Set(room.currentWord.nextStarts);let path;
+  for(let cursor=0;cursor<queue.length;cursor++){const node=queue[cursor];if(node.s==='비'){path=node.path;break;}
+   for(const e of byFirst.get(node.s)||[])if(e.reading!==room.currentWord.reading&&!seen.has(e.lastSyllable)){seen.add(e.lastSyllable);queue.push({s:e.lastSyllable,path:[...node.path,e.label]});}
   }
   assert(path,'reachable chain to 비');
   for(const word of [...path,'비비','비수']){
@@ -132,5 +136,23 @@ test('expanded dictionary accepts 비비 and 비수 with sourced explanations', 
     console.log(word,accepted.meanings[0].definition,room.dictionaryVersion);
    }
   }
+ }finally{for(const p of peers){if(p.ws.readyState===WebSocket.OPEN)p.send({type:'leave'});p.close();}}
+});
+
+
+test('four players: first timeout ends round and everyone returns for round two', {timeout:26000},async()=>{
+ const peers=[];
+ try {
+  const host=await connect({type:'create',name:'라운드방장'});peers.push(host);const h=await host.wait(m=>m.type==='welcome');
+  for(let i=1;i<4;i++){const p=await connect({type:'join',code:h.code,name:'참가자'+i});peers.push(p);await p.wait(m=>m.type==='welcome');}
+  await host.act({type:'configure',rounds:2},m=>m.type==='state'&&m.room.totalRounds===2);
+  for(const p of peers)await p.act({type:'ready',ready:true},m=>m.type==='state');
+  const first=(await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing')).room;
+  assert.equal(first.deadline-first.startsAt,10000);
+  const result=(await host.wait(m=>m.type==='state'&&m.room.phase==='intermission',0,16000)).room;
+  assert.equal(result.roundResults[0].failedId,first.turnPlayerId);assert.equal(result.roundResults[0].winnerIds.length,3);
+  assert.equal(result.players.reduce((sum,p)=>sum+p.score,0),900);
+  const second=(await host.wait(m=>m.type==='state'&&m.room.phase==='playing'&&m.room.round===2,0,6000)).room;
+  assert(second.players.every(p=>p.alive));assert.equal(second.roundResults.length,1);
  }finally{for(const p of peers){if(p.ws.readyState===WebSocket.OPEN)p.send({type:'leave'});p.close();}}
 });
