@@ -22,6 +22,7 @@ test('real WebSockets: four players, ready, countdown, 55 answers, floor, resume
   const full=await connect({type:'join',code,name:'다섯째'});assert.equal((await full.wait(m=>m.type==='error')).code,'ROOM_FULL');
   const bad=await a.act({type:'start'},m=>m.type==='error');assert.equal(bad.code,'NOT_READY');
   const hostOnly=await peers[1].act({type:'start'},m=>m.type==='error');assert.equal(hostOnly.code,'HOST_ONLY');
+  await a.act({type:'configure',rounds:1},m=>m.type==='state'&&m.room.totalRounds===1);
   for(let i=0;i<4;i++)await peers[i].act({type:'ready',ready:true},m=>m.type==='state'&&m.room.players.find(p=>p.id===ids[i])?.ready);
   let room=(await a.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing')).room;
   assert.equal(room.turnDurationMs,6000);assert.equal(room.players.length,4);
@@ -67,4 +68,29 @@ test('host kick removes a guest, rejects forged authority and invalidates resume
   const resume=await connect({type:'join',code:h.code,name:'복귀',token:g.token});peers.push(resume);
   assert.equal((await resume.wait(m=>m.type==='error')).code,'SESSION_EXPIRED');
  } finally {for(const p of peers)p.close();}
+});
+
+
+test('two rounds advance automatically; totals persist; disconnected seat expires after six seconds', {timeout:45000},async()=>{
+ const peers=[];
+ try{
+  const host=await connect({type:'create',name:'방장'});peers.push(host);const h=await host.wait(m=>m.type==='welcome');
+  const guest=await connect({type:'join',code:h.code,name:'손님'});peers.push(guest);const g=await guest.wait(m=>m.type==='welcome');
+  assert.equal((await guest.act({type:'configure',rounds:2},m=>m.type==='error')).code,'HOST_ONLY');
+  await host.act({type:'configure',rounds:2},m=>m.type==='state'&&m.room.totalRounds===2);
+  for(const p of peers)await p.act({type:'ready',ready:true},m=>m.type==='state');
+  await host.act({type:'start'},m=>m.type==='state'&&m.room.phase==='playing');
+  const between=(await host.wait(m=>m.type==='state'&&m.room.phase==='intermission',0,12000)).room;
+  assert.equal(between.round,1);assert.equal(between.roundResults.length,1);assert.equal(between.players.reduce((sum,p)=>sum+p.score,0),300);
+  const second=(await host.wait(m=>m.type==='state'&&m.room.round===2&&m.room.phase==='playing',0,6000)).room;
+  assert.equal(second.turnDurationMs,6000);assert.equal(second.acceptedCount,0);assert(second.players.every(p=>p.alive));assert.equal(second.players.reduce((sum,p)=>sum+p.score,0),300);
+  const final=(await host.wait(m=>m.type==='state'&&m.room.phase==='finished',0,12000)).room;
+  assert.equal(final.roundResults.length,2);assert.equal(final.players.reduce((sum,p)=>sum+p.score,0),600);
+  const best=Math.max(...final.players.map(p=>p.score));assert.deepEqual(new Set(final.winnerIds),new Set(final.players.filter(p=>p.score===best).map(p=>p.id)));
+  await host.act({type:'rematch'},m=>m.type==='state'&&m.room.phase==='lobby');
+  const after=host.events.length;guest.close();
+  await host.wait(m=>m.type==='state'&&m.room.players.length===1,after,8500);
+  const resume=await connect({type:'join',code:h.code,name:'복귀',token:g.token});peers.push(resume);
+  assert.equal((await resume.wait(m=>m.type==='error')).code,'SESSION_EXPIRED');
+ }finally{for(const p of peers)p.close();}
 });

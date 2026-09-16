@@ -14,6 +14,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await host.screenshot({path:'test-results/home-desktop.png',fullPage:true});
  await host.getByLabel('닉네임').fill('동현');await host.getByRole('button',{name:'새로운 방 만들기'}).click();
  await expect(host.getByRole('heading',{name:'대기방'})).toBeVisible();
+ await host.getByLabel('라운드 수').selectOption('1');
  const room=new URL(host.url()).searchParams.get('room')!;expect(room).toHaveLength(6);
  await expect(host.locator('#qr')).toHaveAttribute('src',/^data:image\/png/);
  await expect(host.getByRole('button',{name:'게임 시작'})).toBeDisabled();
@@ -23,9 +24,10 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await host.screenshot({path:'test-results/lobby-desktop.png',fullPage:true});await guest.screenshot({path:'test-results/lobby-mobile.png',fullPage:true});
  await host.getByRole('button',{name:'준비하기',exact:true}).click();await guest.getByRole('button',{name:'준비하기',exact:true}).click();
  await expect(host.getByRole('button',{name:'게임 시작'})).toBeEnabled();await host.getByRole('button',{name:'게임 시작'}).click();
- await expect(host.locator('.arena')).toBeVisible();await expect(guest.locator('.arena')).toBeVisible();
+ await expect(host.locator('.arena')).toBeVisible();await expect(host.locator('.next-letter-panel')).toBeVisible();await expect(guest.locator('.arena')).toBeVisible();
  await expect(host.locator('#timer-label')).toHaveText('남은 시간',{timeout:6000});
  const active=(await host.locator('#turn-label').textContent())==='지금 내 차례'?host:guest;
+ await expect(active.locator('.turn-banner')).toContainText('내 차례');
  const starts=(await active.locator('.word-prompt b').innerText()).split(' / ');
  const initial=(await active.getByTestId('current-word').innerText()).replace(/\s/g,'');
  const next=data.entries.find((e:any)=>starts.includes(e.firstSyllable)&&e.reading!==initial);
@@ -80,5 +82,35 @@ test('host can kick a guest and guest returns home without reconnecting',async({
  expect(await guest.evaluate(()=>sessionStorage.getItem('wordrelay-session'))).toBeNull();
  await expect(host.locator('.player-card:not(.empty)')).toHaveCount(1);
  await guest.reload();await expect(guest.getByRole('heading',{name:'끝말잇기'})).toBeVisible();
+ await a.close();await b.close();
+});
+
+test('two rounds show automatic transition, cumulative scoreboard and final winner',async({browser})=>{
+ test.setTimeout(50000);
+ const a=await browser.newContext(),b=await browser.newContext();const host=await a.newPage(),guest=await b.newPage();
+ await host.goto('/');await host.getByLabel('닉네임').fill('라운드방장');await host.getByRole('button',{name:'새로운 방 만들기'}).click();
+ await host.getByLabel('라운드 수').selectOption('2');
+ await guest.goto(host.url());await guest.getByLabel('닉네임').fill('라운드손님');await guest.getByRole('button',{name:'이 방에 입장하기'}).click();
+ await expect(guest.getByLabel('라운드 수')).toHaveValue('2');await expect(guest.getByLabel('라운드 수')).toBeDisabled();
+ await host.getByRole('button',{name:'준비하기',exact:true}).click();await guest.getByRole('button',{name:'준비하기',exact:true}).click();await host.getByRole('button',{name:'게임 시작'}).click();
+ await expect(host.locator('.turn-banner')).toContainText('1 / 2 라운드');
+ await expect(host.locator('.round-countdown')).toBeVisible({timeout:12000});
+ await host.screenshot({path:'test-results/round-result.png',fullPage:true});
+ await expect(host.locator('.turn-banner')).toContainText('2 / 2 라운드',{timeout:7000});
+ await expect(host.locator('.result-card h1')).toContainText('우승',{timeout:14000});
+ await expect(host.locator('.result-players')).toContainText('300');
+ await host.locator('.round-breakdown summary').click();await expect(host.locator('.round-breakdown > div')).toHaveCount(2);
+ await host.screenshot({path:'test-results/final-score.png',fullPage:true});await a.close();await b.close();
+});
+
+test('offline recovery ejects after six seconds',async({browser})=>{
+ const a=await browser.newContext(),b=await browser.newContext();const host=await a.newPage(),guest=await b.newPage();
+ await host.goto('/');await host.getByLabel('닉네임').fill('방장');await host.getByRole('button',{name:'새로운 방 만들기'}).click();await expect(host.getByRole('heading',{name:'대기방'})).toBeVisible();
+ await guest.goto(host.url());await guest.getByLabel('닉네임').fill('오프라인');await guest.getByRole('button',{name:'이 방에 입장하기'}).click();await expect(guest.getByRole('heading',{name:'대기방'})).toBeVisible();
+ const before=Date.now();await b.setOffline(true);
+ await expect(guest.getByRole('heading',{name:'끝말잇기'})).toBeVisible({timeout:8500});expect(Date.now()-before).toBeGreaterThanOrEqual(5900);
+ await expect(guest.getByRole('status')).toContainText('6초');
+ await expect(host.locator('.player-card:not(.empty)')).toHaveCount(1,{timeout:8500});
+ await b.setOffline(false);expect(await guest.evaluate(()=>sessionStorage.getItem('wordrelay-session'))).toBeNull();
  await a.close();await b.close();
 });

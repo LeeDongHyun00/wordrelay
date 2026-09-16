@@ -6,7 +6,12 @@ use std::{
 };
 use uuid::Uuid;
 
-pub const RECONNECT_GRACE: Duration = Duration::from_secs(30);
+pub const RECONNECT_GRACE: Duration = Duration::from_secs(6);
+pub const ROUND_BREAK: Duration = Duration::from_secs(4);
+pub fn answer_points(length: usize, remaining_ms: u64, budget_ms: u64) -> u32 {
+    100 + 20 * length.saturating_sub(1) as u32
+        + (200 * remaining_ms.min(budget_ms) / budget_ms.max(1)) as u32
+}
 pub const COUNTDOWN: Duration = Duration::from_secs(3);
 pub fn turn_budget(accepted: u32) -> u64 {
     6000_u64.saturating_sub(u64::from(accepted) * 100).max(1000)
@@ -16,6 +21,7 @@ pub fn turn_budget(accepted: u32) -> u64 {
 pub enum Phase {
     Lobby,
     Playing,
+    Intermission,
     Finished,
 }
 pub struct Player {
@@ -28,6 +34,8 @@ pub struct Player {
     pub left: bool,
     pub disconnected_at: Option<Instant>,
     pub score: u32,
+    pub round_score: u32,
+    pub round_penalty: u32,
 }
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -35,6 +43,22 @@ pub struct History {
     pub player_id: Option<String>,
     pub name: String,
     pub word: Word,
+    pub points: u32,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RoundResult {
+    pub round: u32,
+    pub winner_id: Option<String>,
+    pub scores: Vec<RoundScore>,
+}
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RoundScore {
+    pub player_id: String,
+    pub points: u32,
+    pub total: u32,
+    pub penalty: u32,
 }
 pub struct Game {
     pub code: String,
@@ -52,6 +76,11 @@ pub struct Game {
     pub winner_id: Option<String>,
     pub notice: String,
     pub updated: Instant,
+    pub total_rounds: u32,
+    pub round: u32,
+    pub next_round_at: Option<Instant>,
+    pub round_results: Vec<RoundResult>,
+    pub winner_ids: Vec<String>,
 }
 #[derive(Debug)]
 pub struct GameError {
@@ -75,6 +104,8 @@ pub struct PlayerView {
     connected: bool,
     left: bool,
     score: u32,
+    round_score: u32,
+    round_penalty: u32,
 }
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -96,6 +127,11 @@ pub struct Snapshot {
     pub notice: String,
     pub can_start: bool,
     pub dictionary_version: String,
+    pub total_rounds: u32,
+    pub round: u32,
+    pub next_round_at: Option<u64>,
+    pub round_results: Vec<RoundResult>,
+    pub winner_ids: Vec<String>,
 }
 impl Game {
     pub fn new(code: String, now: Instant) -> Self {
@@ -115,6 +151,11 @@ impl Game {
             winner_id: None,
             notice: String::new(),
             updated: now,
+            total_rounds: 3,
+            round: 0,
+            next_round_at: None,
+            round_results: vec![],
+            winner_ids: vec![],
         }
     }
     pub fn attach(&mut self, name: &str, token: Option<&str>, now: Instant) -> Result<usize> {
@@ -129,6 +170,15 @@ impl Game {
                     "입장 정보가 만료되었습니다. 다시 입장해 주세요.",
                 ));
             };
+            if self.players[i]
+                .disconnected_at
+                .is_some_and(|t| now.duration_since(t) >= RECONNECT_GRACE)
+            {
+                return Err(err(
+                    "SESSION_EXPIRED",
+                    "연결 복구 시간이 6초를 지나 퇴장했습니다.",
+                ));
+            }
             self.players[i].connected = true;
             self.players[i].disconnected_at = None;
             if self.phase != Phase::Playing {
@@ -162,6 +212,8 @@ impl Game {
             left: false,
             disconnected_at: None,
             score: 0,
+            round_score: 0,
+            round_penalty: 0,
         });
         self.reset_ready();
         self.updated = now;
@@ -231,21 +283,78 @@ impl Game {
                 "2명 이상, 모두 준비해야 시작할 수 있어요.",
             ));
         }
+        self.round = 0;
+        self.round_results.clear();
+        self.winner_ids.clear();
+        for p in &mut self.players {
+            p.score = 0;
+        }
+        self.turn = (Uuid::new_v4().as_u128() as usize) % self.players.len();
+        self.start_round(d, now);
+        Ok(())
+    }
+    pub fn configure(&mut self, id: &str, rounds: u32, now: Instant) -> Result<()> {
+        if id != self.host_id {
+            return Err(err("HOST_ONLY", "방장만 라운드 수를 설정할 수 있습니다."));
+        }
+        if self.phase != Phase::Lobby {
+            return Err(err("NOT_LOBBY", "대기방에서만 설정할 수 있습니다."));
+        }
+        if !(1..=10).contains(&rounds) {
+            return Err(err("INVALID_ROUNDS", "라운드는 1~10으로 설정해 주세요."));
+        }
+        if self.total_rounds != rounds {
+            self.total_rounds = rounds;
+            self.reset_ready();
+        }
+        self.updated = now;
+        Ok(())
+    }
+    fn start_round(&mut self, d: &Dictionary, now: Instant) {
+        self.round += 1;
         self.phase = Phase::Playing;
         self.accepted = 0;
         self.used.clear();
         self.history.clear();
         self.winner_id = None;
+        self.next_round_at = None;
         for p in &mut self.players {
-            p.alive = true;
-            p.score = 0;
+            p.alive = !p.left;
+            p.round_score = 0;
+            p.round_penalty = 0;
         }
-        self.turn = (Uuid::new_v4().as_u128() as usize) % self.players.len();
+        if self.round > 1 {
+            self.next_turn();
+        }
         self.new_seed(d);
-        self.notice = "3초 후 시작합니다.".to_owned();
+        self.notice = format!("{} 라운드", self.round);
         self.begin_turn(now + COUNTDOWN);
         self.updated = now;
-        Ok(())
+    }
+    pub fn advance_round(&mut self, d: &Dictionary, now: Instant) -> bool {
+        if self.phase != Phase::Intermission || self.next_round_at.is_none_or(|t| now < t) {
+            return false;
+        }
+        self.start_round(d, now);
+        true
+    }
+    fn finish_match(&mut self) {
+        let best = self
+            .players
+            .iter()
+            .filter(|p| !p.left)
+            .map(|p| p.score)
+            .max();
+        self.winner_ids = self
+            .players
+            .iter()
+            .filter(|p| !p.left && Some(p.score) == best)
+            .map(|p| p.id.clone())
+            .collect();
+        self.phase = Phase::Finished;
+        self.next_round_at = None;
+        self.deadline = None;
+        self.starts_at = None;
     }
     fn begin_turn(&mut self, now: Instant) {
         self.turn_id += 1;
@@ -260,6 +369,7 @@ impl Game {
                 player_id: None,
                 name: "시작 단어".into(),
                 word: d.word(seed),
+                points: 0,
             });
         } else {
             self.phase = Phase::Finished;
@@ -281,20 +391,43 @@ impl Game {
             }
         }
     }
-    fn finish_if_needed(&mut self) -> bool {
+    fn finish_if_needed(&mut self, now: Instant) -> bool {
         let alive: Vec<_> = self.players.iter().filter(|p| p.alive && !p.left).collect();
         if alive.len() > 1 {
             return false;
         }
         self.winner_id = alive.first().map(|p| p.id.clone());
-        self.notice = alive
-            .first()
-            .map(|p| format!("{} 님 승리", p.name))
-            .unwrap_or("남은 참가자가 없어 게임을 마쳤어요.".into());
-        self.phase = Phase::Finished;
+        if let Some(p) = self
+            .players
+            .iter_mut()
+            .find(|p| Some(&p.id) == self.winner_id.as_ref())
+        {
+            p.score += 300;
+            p.round_score += 300;
+        }
+        self.round_results.push(RoundResult {
+            round: self.round,
+            winner_id: self.winner_id.clone(),
+            scores: self
+                .players
+                .iter()
+                .map(|p| RoundScore {
+                    player_id: p.id.clone(),
+                    points: p.round_score,
+                    total: p.score,
+                    penalty: p.round_penalty,
+                })
+                .collect(),
+        });
         self.deadline = None;
         self.starts_at = None;
         self.turn_id += 1;
+        if self.round < self.total_rounds && self.players.iter().filter(|p| !p.left).count() >= 2 {
+            self.phase = Phase::Intermission;
+            self.next_round_at = Some(now + ROUND_BREAK);
+        } else {
+            self.finish_match();
+        }
         true
     }
     pub fn submit(
@@ -348,12 +481,19 @@ impl Game {
         }
         self.used.insert(next);
         self.previous = Some(next);
+        let points = answer_points(
+            d.entries[next].reading.chars().count(),
+            self.deadline.unwrap().duration_since(now).as_millis() as u64,
+            turn_budget(self.accepted),
+        );
         self.accepted += 1;
-        self.players[self.turn].score += 1;
+        self.players[self.turn].score += points;
+        self.players[self.turn].round_score += points;
         self.push_history(History {
             player_id: Some(id.to_owned()),
             name: self.players[self.turn].name.clone(),
             word: d.word(next),
+            points,
         });
         self.notice = String::new();
         if !d.has_next(next, &self.used) {
@@ -367,13 +507,24 @@ impl Game {
         self.updated = now;
         Ok(())
     }
+    fn eliminate(&mut self, index: usize) {
+        let p = &mut self.players[index];
+        if !p.alive {
+            return;
+        }
+        let penalty = (p.round_score / 5).min(150);
+        p.round_penalty = penalty;
+        p.round_score -= penalty;
+        p.score -= penalty;
+        p.alive = false;
+    }
     pub fn timeout(&mut self, d: &Dictionary, now: Instant) -> bool {
         if self.phase != Phase::Playing || self.deadline.is_none_or(|end| now < end) {
             return false;
         }
-        self.players[self.turn].alive = false;
+        self.eliminate(self.turn);
         let name = self.players[self.turn].name.clone();
-        if !self.finish_if_needed() {
+        if !self.finish_if_needed(now) {
             self.next_turn();
             self.new_seed(d);
             self.notice = format!("{name} 님 시간 초과! 새 단어로 계속합니다.");
@@ -392,6 +543,9 @@ impl Game {
         self.players[i].disconnected_at = Some(now);
         self.players[i].ready = false;
         if leave {
+            if self.phase == Phase::Playing {
+                self.eliminate(i);
+            }
             self.players[i].left = true;
             self.players[i].alive = false;
         }
@@ -402,7 +556,7 @@ impl Game {
             self.reset_ready();
         } else if self.phase == Phase::Playing
             && leave
-            && !self.finish_if_needed()
+            && !self.finish_if_needed(now)
             && self.turn == i
         {
             self.next_turn();
@@ -411,25 +565,32 @@ impl Game {
                 self.begin_turn(now)
             }
         }
+        if self.phase == Phase::Intermission && self.players.iter().filter(|p| !p.left).count() < 2
+        {
+            self.finish_match();
+        }
+        if self.phase == Phase::Finished {
+            self.finish_match();
+        }
         self.transfer_host();
         self.updated = now;
     }
-    pub fn sweep(&mut self, now: Instant) -> bool {
-        if self.phase != Phase::Lobby {
-            return false;
+    pub fn sweep(&mut self, d: &Dictionary, now: Instant) -> bool {
+        let expired: Vec<_> = self
+            .players
+            .iter()
+            .filter(|p| {
+                !p.connected
+                    && !p.left
+                    && p.disconnected_at
+                        .is_some_and(|t| now.duration_since(t) >= RECONNECT_GRACE)
+            })
+            .map(|p| p.id.clone())
+            .collect();
+        for id in &expired {
+            self.disconnect(id, true, d, now);
         }
-        let before = self.players.len();
-        self.players.retain(|p| {
-            p.connected
-                || p.disconnected_at
-                    .is_none_or(|t| now.duration_since(t) < RECONNECT_GRACE)
-        });
-        if before != self.players.len() {
-            self.reset_ready();
-            self.transfer_host();
-            return true;
-        }
-        false
+        !expired.is_empty()
     }
     pub fn rematch(&mut self, id: &str, now: Instant) -> Result<()> {
         if self.host_id != id {
@@ -444,7 +605,13 @@ impl Game {
         for p in &mut self.players {
             p.alive = true;
             p.score = 0;
+            p.round_score = 0;
+            p.round_penalty = 0;
         }
+        self.round = 0;
+        self.round_results.clear();
+        self.winner_ids.clear();
+        self.next_round_at = None;
         self.previous = None;
         self.history.clear();
         self.used.clear();
@@ -478,6 +645,8 @@ impl Game {
                     connected: p.connected,
                     left: p.left,
                     score: p.score,
+                    round_score: p.round_score,
+                    round_penalty: p.round_penalty,
                 })
                 .collect(),
             turn_player_id: if self.phase == Phase::Playing {
@@ -497,6 +666,11 @@ impl Game {
             notice: self.notice.clone(),
             can_start: self.can_start(),
             dictionary_version: d.version.clone(),
+            total_rounds: self.total_rounds,
+            round: self.round,
+            next_round_at: self.next_round_at.map(timestamp),
+            round_results: self.round_results.clone(),
+            winner_ids: self.winner_ids.clone(),
         }
     }
 }
@@ -519,12 +693,108 @@ mod tests {
     }
     fn started(n: usize) -> (Game, Instant) {
         let (mut g, now) = lobby(n);
+        g.total_rounds = 1;
         for p in &mut g.players {
             p.ready = true;
         }
         g.start(&g.host_id.clone(), dict(), now).unwrap();
         g.turn = 0;
         (g, now + COUNTDOWN)
+    }
+    #[test]
+    fn capped_penalty_and_survival_bonus_allow_a_comeback() {
+        let (mut g, now) = started(2);
+        g.players[0].score = 500;
+        g.players[0].round_score = 500;
+        g.players[1].score = 150;
+        g.players[1].round_score = 150;
+        let challenger = g.players[1].id.clone();
+        g.timeout(dict(), now + Duration::from_secs(6));
+        assert_eq!(g.players[0].score, 400);
+        assert_eq!(g.players[1].score, 450);
+        assert_eq!(g.winner_ids, vec![challenger]);
+    }
+    #[test]
+    fn elimination_penalty_preserves_prior_rounds_caps_and_applies_once() {
+        let (mut g, now) = started(3);
+        g.players[0].score = 1200;
+        g.players[0].round_score = 200;
+        g.eliminate(0);
+        assert_eq!(g.players[0].score, 1160);
+        assert_eq!(g.players[0].round_score, 160);
+        assert_eq!(g.players[0].round_penalty, 40);
+        g.disconnect(&g.players[0].id.clone(), true, dict(), now);
+        assert_eq!(g.players[0].score, 1160);
+        g.players[1].score = 2000;
+        g.players[1].round_score = 1000;
+        g.eliminate(1);
+        assert_eq!(g.players[1].score, 1850);
+        g.eliminate(2);
+        assert_eq!(g.players[2].score, 0);
+    }
+    #[test]
+    fn speed_length_scoring_is_bounded_by_actual_turn_budget() {
+        assert_eq!(answer_points(4, 3000, 6000), 260);
+        assert_eq!(answer_points(4, 500, 1000), 260);
+        assert_eq!(answer_points(1, 6000, 6000), 300);
+        assert_eq!(answer_points(5, 0, 6000), 180);
+        assert!(answer_points(5, 2000, 6000) > answer_points(4, 2000, 6000));
+    }
+    #[test]
+    fn rounds_keep_points_reset_timer_and_report_ties() {
+        let (mut g, now) = started(2);
+        g.total_rounds = 2;
+        let first = g.players[0].id.clone();
+        let second = g.players[1].id.clone();
+        g.timeout(dict(), now + Duration::from_secs(6));
+        assert_eq!(g.phase, Phase::Intermission);
+        assert_eq!(g.players[1].score, 300);
+        let next = g.next_round_at.unwrap();
+        assert!(!g.advance_round(dict(), next - Duration::from_millis(1)));
+        assert!(g.advance_round(dict(), next));
+        assert_eq!(g.round, 2);
+        assert!(g.players.iter().all(|p| p.alive && p.round_score == 0));
+        assert_eq!(g.accepted, 0);
+        assert_eq!(
+            g.deadline.unwrap() - g.starts_at.unwrap(),
+            Duration::from_secs(6)
+        );
+        g.turn = 1;
+        g.timeout(dict(), g.deadline.unwrap());
+        assert_eq!(g.phase, Phase::Finished);
+        assert_eq!(g.round_results.len(), 2);
+        assert_eq!(g.winner_ids, vec![first, second]);
+        let points: u32 = g.players.iter().map(|p| p.score).sum();
+        assert!(!g.timeout(dict(), now + Duration::from_secs(99)));
+        assert_eq!(g.players.iter().map(|p| p.score).sum::<u32>(), points);
+    }
+    #[test]
+    fn disconnect_expires_in_game_and_cannot_resume_at_boundary() {
+        let (mut g, now) = started(3);
+        let id = g.players[1].id.clone();
+        let token = g.players[1].token.clone();
+        g.disconnect(&id, false, dict(), now);
+        assert!(!g.sweep(dict(), now + Duration::from_millis(5999)));
+        assert!(
+            g.attach("복귀", Some(&token), now + Duration::from_secs(6))
+                .is_err()
+        );
+        assert!(g.sweep(dict(), now + Duration::from_secs(6)));
+        assert!(g.players[1].left);
+    }
+    #[test]
+    fn round_configuration_is_host_only_and_resets_ready() {
+        let (mut g, now) = lobby(2);
+        let host = g.host_id.clone();
+        assert!(g.configure(&g.players[1].id.clone(), 2, now).is_err());
+        for p in &mut g.players {
+            p.ready = true;
+        }
+        assert!(g.configure(&host, 0, now).is_err());
+        assert!(g.configure(&host, 11, now).is_err());
+        g.configure(&host, 2, now).unwrap();
+        assert!(!g.can_start());
+        assert_eq!(g.total_rounds, 2);
     }
     #[test]
     fn capacity_readiness_and_host_permissions() {
@@ -670,8 +940,8 @@ mod tests {
         let id = g.players[0].id.clone();
         let token = g.players[0].token.clone();
         g.disconnect(&id, false, dict(), now);
-        assert!(!g.sweep(now + Duration::from_secs(29)));
-        assert!(g.sweep(now + Duration::from_secs(30)));
+        assert!(!g.sweep(dict(), now + Duration::from_millis(5999)));
+        assert!(g.sweep(dict(), now + Duration::from_secs(6)));
         assert_eq!(g.players.len(), 3);
         assert_eq!(
             g.attach("사람", Some(&token), now).unwrap_err().code,

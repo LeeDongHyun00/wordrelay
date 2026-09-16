@@ -55,6 +55,9 @@ enum ClientMessage {
     Ready {
         ready: bool,
     },
+    Configure {
+        rounds: u32,
+    },
     Start,
     Submit {
         word: String,
@@ -128,11 +131,12 @@ async fn run_room(app: Arc<App>, code: String, mut rx: mpsc::Receiver<Command>) 
     loop {
         let deadline = game
             .deadline
+            .or(game.next_round_at)
             .unwrap_or_else(|| Instant::now() + Duration::from_secs(3600));
         tokio::select! {
             biased;
-            _=tokio::time::sleep_until(deadline.into()), if game.phase==Phase::Playing => {
-                if game.timeout(&app.dict,Instant::now()) {publish(&mut game,&mut clients,&app.dict);}
+            _=tokio::time::sleep_until(deadline.into()), if matches!(game.phase,Phase::Playing|Phase::Intermission) => {
+                if game.timeout(&app.dict,Instant::now()) || game.advance_round(&app.dict,Instant::now()) {publish(&mut game,&mut clients,&app.dict);}
             }
             command=rx.recv()=> {
                 let Some(command)=command else {break};
@@ -155,6 +159,7 @@ async fn run_room(app: Arc<App>, code: String, mut rx: mpsc::Receiver<Command>) 
                         let turn_before=game.turn_id;
                         let result=match msg {
                             ClientMessage::Ready{ready}=>game.ready(&id,ready,now),
+                            ClientMessage::Configure{rounds}=>game.configure(&id,rounds,now),
                             ClientMessage::Start=>game.start(&id,&app.dict,now),
                             ClientMessage::Submit{word,turn_id}=>game.submit(&id,turn_id,&word,&app.dict,now),
                             ClientMessage::Kick{player_id}=>{
@@ -184,7 +189,7 @@ async fn run_room(app: Arc<App>, code: String, mut rx: mpsc::Receiver<Command>) 
             }
             _=sweep.tick()=>{
                 let now=Instant::now();
-                if game.sweep(now) {publish(&mut game,&mut clients,&app.dict);}
+                if game.sweep(&app.dict,now) {publish(&mut game,&mut clients,&app.dict);}
                 let idle=now.duration_since(game.updated);
                 if (clients.is_empty() && idle>Duration::from_secs(60)) || idle>Duration::from_secs(1800) {break}
             }
