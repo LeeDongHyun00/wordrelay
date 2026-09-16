@@ -25,7 +25,7 @@ function serverNow(){return anchor.server+performance.now()-anchor.mono;}
 function notify(message:string){toast=message;const el=document.querySelector('#toast');if(el){el.textContent=message;el.classList.add('visible');}window.setTimeout(()=>{if(toast===message){toast='';document.querySelector('#toast')?.classList.remove('visible');}},4500);}
 function send(message:object){if(ws?.readyState===WebSocket.OPEN){ws.send(JSON.stringify(message));return true;}notify('연결을 복구하고 있어요. 잠시만 기다려 주세요.');return false;}
 function ping(){if(connected)send({type:'ping',sentAt:Date.now()});}
-setInterval(ping,5000);
+setInterval(ping,1000);
 function connect(request:object){
   if(connecting)return;connecting=true;connected=false;intentional=false;minRtt=Infinity;hasClock=false;render();
   const socket=new WebSocket(`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}/ws`);ws=socket;

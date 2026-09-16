@@ -88,6 +88,7 @@ enum Command {
     Disconnect {
         id: String,
         generation: Uuid,
+        expired: bool,
     },
 }
 struct Client {
@@ -180,9 +181,9 @@ async fn run_room(app: Arc<App>, code: String, mut rx: mpsc::Receiver<Command>) 
                         if let Err(e)=result && let Some(c)=clients.get(&id) {error(&c.out,e.code,&e.message);}
                         if changed {publish(&mut game,&mut clients,&app.dict);}
                     }
-                    Command::Disconnect{id,generation}=>{
+                    Command::Disconnect{id,generation,expired}=>{
                         if clients.get(&id).is_some_and(|c|c.generation==generation) {
-                            clients.remove(&id);game.disconnect(&id,false,&app.dict,Instant::now());publish(&mut game,&mut clients,&app.dict);
+                            clients.remove(&id);game.disconnect(&id,expired,&app.dict,Instant::now());publish(&mut game,&mut clients,&app.dict);
                         }
                     }
                 }
@@ -305,7 +306,8 @@ async fn socket_session(
     };
     drop(out);
     let (mut writer, mut reader) = socket.split();
-    let mut heartbeat = tokio::time::interval(Duration::from_secs(10));
+    let mut heartbeat = tokio::time::interval(Duration::from_secs(1));
+    let mut expired = false;
     let mut last_seen = Instant::now();
     let mut window = Instant::now();
     let mut messages = 0;
@@ -316,9 +318,10 @@ async fn socket_session(
                 if !matches!(tokio::time::timeout(Duration::from_secs(3),writer.send(Message::Text(payload.to_string().into()))).await,Ok(Ok(()))) {break}
             }
             frame=reader.next()=>{
-                let Some(Ok(frame))=frame else {break};last_seen=Instant::now();
+                let Some(Ok(frame))=frame else {break};
                 match frame {
                     Message::Text(raw)=>{
+                        last_seen=Instant::now();
                         if window.elapsed()>=Duration::from_secs(1) {window=Instant::now();messages=0;}
                         messages+=1;if messages>25 {let _=writer.send(Message::Close(None)).await;break}
                         let Ok(msg)=serde_json::from_str::<ClientMessage>(&raw) else {let _=writer.send(Message::Text(json!({"type":"error","code":"BAD_MESSAGE","message":"요청 형식이 올바르지 않습니다."}).to_string().into())).await;continue};
@@ -332,12 +335,18 @@ async fn socket_session(
                 }
             }
             _=heartbeat.tick()=>{
-                if last_seen.elapsed()>Duration::from_secs(35) {break}
+                if last_seen.elapsed()>=game::RECONNECT_GRACE {expired=true;break}
                 if writer.send(Message::Ping(vec![].into())).await.is_err() {break}
             }
         }
     }
-    let _ = room.send(Command::Disconnect { id, generation }).await;
+    let _ = room
+        .send(Command::Disconnect {
+            id,
+            generation,
+            expired,
+        })
+        .await;
 }
 async fn ws(
     State(app): State<Arc<App>>,

@@ -5,12 +5,12 @@ const url=process.env.WS_URL||'ws://127.0.0.1:3000/ws';
 const dict=JSON.parse(readFileSync(new URL('../data/dictionary.json',import.meta.url),'utf8'));
 const clients=[];
 class Peer {
- constructor(){this.ws=new WebSocket(url);this.events=[];this.pending=[];clients.push(this);this.ws.addEventListener('message',e=>{const m=JSON.parse(e.data);this.events.push(m);for(const wake of this.pending.splice(0))wake();});}
+ constructor(){this.ws=new WebSocket(url);this.heartbeat=setInterval(()=>{if(this.ws.readyState===WebSocket.OPEN)this.send({type:'ping',sentAt:Date.now()});},1000);this.ws.addEventListener('close',()=>clearInterval(this.heartbeat));this.events=[];this.pending=[];clients.push(this);this.ws.addEventListener('message',e=>{const m=JSON.parse(e.data);this.events.push(m);for(const wake of this.pending.splice(0))wake();});}
  async open(){await new Promise((resolve,reject)=>{this.ws.addEventListener('open',resolve,{once:true});this.ws.addEventListener('error',reject,{once:true});});}
  send(data){this.ws.send(JSON.stringify(data));}
  async wait(predicate,after=0,timeout=10000){const deadline=Date.now()+timeout;while(Date.now()<deadline){const found=this.events.slice(after).find(predicate);if(found)return found;await new Promise(resolve=>{const t=setTimeout(resolve,50);this.pending.push(()=>{clearTimeout(t);resolve();});});}throw new Error('Timed out: '+JSON.stringify(this.events.slice(-3)));}
  async act(data,predicate){const after=this.events.length;this.send(data);return this.wait(predicate,after);}
- close(){this.ws.close();}
+ close(){clearInterval(this.heartbeat);this.ws.close();}
 }
 async function connect(message){const p=new Peer();await p.open();p.send(message);return p;}
 const sleep=ms=>new Promise(r=>setTimeout(r,Math.max(0,ms)));
@@ -93,4 +93,14 @@ test('two rounds advance automatically; totals persist; disconnected seat expire
   const resume=await connect({type:'join',code:h.code,name:'복귀',token:g.token});peers.push(resume);
   assert.equal((await resume.wait(m=>m.type==='error')).code,'SESSION_EXPIRED');
  }finally{for(const p of peers)p.close();}
+});
+
+
+test('server expires a silent connection without waiting for TCP close', {timeout:12000},async()=>{
+ const host=await connect({type:'create',name:'호스트'});const h=await host.wait(m=>m.type==='welcome');
+ const guest=await connect({type:'join',code:h.code,name:'신호없음'});const g=await guest.wait(m=>m.type==='welcome');
+ try {clearInterval(guest.heartbeat);const after=host.events.length;const start=Date.now();
+ const state=(await host.wait(m=>m.type==='state'&&!m.room.players.some(p=>p.id===g.playerId),after,8500)).room;
+ assert(Date.now()-start>=5000);assert.equal(state.players.length,1);
+ }finally{host.close();guest.close();}
 });
