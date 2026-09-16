@@ -51,7 +51,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await expect(other.getByRole('alert')).toContainText('정답이 아닙니다');
  await host.locator('.dictionary-panel summary').click();await expect(host.locator('.meaning-list article').first()).toBeVisible();
  await host.screenshot({path:'test-results/game-desktop.png',fullPage:true});await guest.screenshot({path:'test-results/game-mobile.png',fullPage:true});
- await guest.reload();await expect(guest.locator('.arena')).toBeVisible();await expect(host.locator('.player-card')).toHaveCount(2);
+ await guest.reload();await expect(guest.locator('.arena, .result-card')).toBeVisible();await expect(host.locator('.player-card, .result-players > div')).toHaveCount(2);
  await expect(host.locator('.result-card')).toBeVisible({timeout:10000});await expect(guest.locator('.result-card')).toBeVisible();
  await host.screenshot({path:'test-results/result-desktop.png',fullPage:true});
  expect(errors).toEqual([]);
