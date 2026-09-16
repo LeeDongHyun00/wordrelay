@@ -155,29 +155,22 @@ impl Dictionary {
                 .or_default()
                 .push(i);
         }
-        let seeds = [
-            "사과",
-            "나무",
-            "바다",
-            "학교",
-            "기차",
-            "고래",
-            "하늘",
-            "우유",
-            "모자",
-            "사자",
-            "구름",
-            "나비",
-            "과자",
-            "의자",
-            "다리",
-            "나라",
-            "소나무",
-            "바람",
-        ]
-        .iter()
-        .filter_map(|s| keys.get(*s).copied())
-        .collect();
+        // Draw from the dictionary, not a fixed starter list. Keep opening
+        // words readable and ensure another distinct word can follow them.
+        let seeds = data
+            .entries
+            .iter()
+            .enumerate()
+            .filter_map(|(i, e)| {
+                ((2..=5).contains(&e.reading.chars().count())
+                    && allowed_starts(&e.last_syllable).iter().any(|s| {
+                        first
+                            .get(s)
+                            .is_some_and(|ids| ids.iter().any(|&next| next != i))
+                    }))
+                .then_some(i)
+            })
+            .collect();
         Ok(Self {
             version: data.version,
             entries: data.entries,
@@ -203,6 +196,16 @@ impl Dictionary {
                     .is_some_and(|ids| ids.iter().any(|i| !used.contains(i)))
             })
     }
+    fn has_unused_successor(&self, word: usize, used: &HashSet<usize>) -> bool {
+        allowed_starts(&self.entries[word].last_syllable)
+            .iter()
+            .any(|s| {
+                self.first.get(s).is_some_and(|ids| {
+                    ids.iter()
+                        .any(|&next| next != word && !used.contains(&next))
+                })
+            })
+    }
     pub fn seed(&self, used: &HashSet<usize>) -> Option<usize> {
         let offset = uuid::Uuid::new_v4().as_u128() as usize;
         self.seeds
@@ -211,9 +214,10 @@ impl Dictionary {
             .skip(offset % self.seeds.len().max(1))
             .take(self.seeds.len())
             .copied()
-            .find(|i| !used.contains(i) && self.has_next(*i, used))
+            .find(|i| !used.contains(i) && self.has_unused_successor(*i, used))
             .or_else(|| {
-                (0..self.entries.len()).find(|i| !used.contains(i) && self.has_next(*i, used))
+                (0..self.entries.len())
+                    .find(|i| !used.contains(i) && self.has_unused_successor(*i, used))
             })
     }
     pub fn word(&self, i: usize) -> Word {
@@ -290,6 +294,14 @@ mod tests {
         );
         assert!(d.follows(d.lookup("나비").unwrap(), d.lookup("비비").unwrap()));
         assert!(d.follows(d.lookup("비비").unwrap(), d.lookup("비수").unwrap()));
+        assert!(d.seeds.len() > 10_000);
+        let mut used = HashSet::new();
+        for _ in 0..100 {
+            let seed = d.seed(&used).unwrap();
+            assert!(used.insert(seed));
+            assert!((2..=5).contains(&d.entries[seed].reading.chars().count()));
+            assert!(d.has_next(seed, &used));
+        }
         assert_eq!(d.lookup("P.E.K.K.A"), d.lookup("페카"));
         assert_eq!(d.lookup("리 신"), d.lookup("리신"));
         assert_eq!(normalize("사과!"), "사과");

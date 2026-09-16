@@ -1,6 +1,8 @@
 import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
+import {gunzipSync} from 'node:zlib';
 const data=JSON.parse(readFileSync('data/dictionary.json','utf8'));
+for(const file of data.supplements||[])data.entries=data.entries.concat(JSON.parse(gunzipSync(readFileSync('data/'+file)).toString()).entries);
 test('desktop + mobile: create, QR, join, ready, play, explanation, reload',async({browser})=>{
  const desktop=await browser.newContext({viewport:{width:1440,height:1000}});
  const mobile=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
@@ -26,7 +28,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await expect(host.getByRole('button',{name:'게임 시작'})).toBeEnabled();await host.getByRole('button',{name:'게임 시작'}).click();
  await expect(host.locator('.arena')).toBeVisible();await expect(host.locator('.next-letter-panel')).toBeVisible();await expect(guest.locator('.arena')).toBeVisible();
  await expect(host.locator('#timer-label')).toHaveText('남은 시간',{timeout:6000});
- const active=(await host.locator('#turn-label').textContent())==='지금 내 차례'?host:guest;
+ const active=(await host.locator('.turn-banner').textContent())!.startsWith('내 차례')?host:guest;
  await expect(active.locator('.turn-banner')).toContainText('내 차례');
  const starts=(await active.locator('.word-prompt b').innerText()).split(' / ');
  const initial=(await active.getByTestId('current-word').innerText()).replace(/\s/g,'');
@@ -38,16 +40,16 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await expect(active.locator('.arena')).toHaveClass(/impact-error/);
  await expect(active.locator('#word-input')).toHaveValue('등록되지않은단어쀍쀍');
  await active.screenshot({path:'test-results/invalid-answer.png',fullPage:true});
- await expect(active.locator('.round-label')).toHaveText('0 WORDS CONNECTED');
+ await expect(active.locator('.history-panel .section-title > span')).toHaveText('0개 성공');
  await active.getByLabel('끝말잇기 단어').fill(next.label);
  await active.locator('#word-input').dispatchEvent('compositionstart');
  await active.locator('#word-input').dispatchEvent('keydown',{key:'Enter',isComposing:true});
- await expect(active.locator('.round-label')).toHaveText('0 WORDS CONNECTED');
+ await expect(active.locator('.history-panel .section-title > span')).toHaveText('0개 성공');
  await active.locator('#word-input').dispatchEvent('compositionend');
 
  await expect(active.getByRole('alert')).toHaveCount(0);
  await expect(host.locator('.arena')).toHaveClass(/impact-success/);
- await expect(host.locator('.round-label')).toHaveText('1 WORDS CONNECTED');await expect(guest.locator('.round-label')).toHaveText('1 WORDS CONNECTED');
+ await expect(host.locator('.history-panel .section-title > span')).toHaveText('1개 성공');await expect(guest.locator('.history-panel .section-title > span')).toHaveText('1개 성공');
  const other=active===host?guest:host;
  await other.locator('#word-input').fill('없는단어쀍');
  await expect(other.locator('#word-input')).toHaveAttribute('enterkeyhint','send');
@@ -97,9 +99,9 @@ test('two rounds show automatic transition, cumulative scoreboard and final winn
  await host.getByRole('button',{name:'준비하기',exact:true}).click();await guest.getByRole('button',{name:'준비하기',exact:true}).click();await host.getByRole('button',{name:'게임 시작'}).click();
  await expect(host.locator('.turn-banner')).toContainText('1 / 2 라운드');
  await expect(host.locator('.arena')).toHaveAttribute('data-timer','slow',{timeout:10000});
- await expect(host.locator('#timer-label')).toContainText('½속도');
+ await expect(host.locator('#timer-label')).toHaveText('남은 시간');
  await expect(host.locator('.arena')).toHaveAttribute('data-timer','critical',{timeout:4000});
- await expect(host.locator('#timer-label')).toContainText('¼속도');
+ await expect(host.locator('#timer-label')).toHaveText('남은 시간');
  await expect(host.locator('#time-value')).toHaveText(/0\.\d{2}/);
  await host.screenshot({path:'test-results/slow-timer.png',fullPage:true});
  await expect(host.locator('.round-countdown')).toBeVisible({timeout:16000});
