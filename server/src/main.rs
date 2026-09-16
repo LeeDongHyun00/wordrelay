@@ -370,6 +370,7 @@ async fn main() {
     );
     tracing::info!(words=dict.entries.len(),version=%dict.version,"dictionary loaded");
     let public_origin = std::env::var("PUBLIC_ORIGIN")
+        .or_else(|_| std::env::var("RENDER_EXTERNAL_URL"))
         .ok()
         .map(|s| s.trim_end_matches('/').to_owned());
     let app = Arc::new(App {
@@ -392,7 +393,8 @@ async fn main() {
             axum::http::HeaderValue::from_static("nosniff"),
         ))
         .with_state(app);
-    let addr = std::env::var("BIND_ADDR").unwrap_or("0.0.0.0:3000".into());
+    let addr = std::env::var("BIND_ADDR")
+        .unwrap_or_else(|_| format!("0.0.0.0:{}", std::env::var("PORT").unwrap_or("3000".into())));
     let listener = tokio::net::TcpListener::bind(&addr)
         .await
         .expect("서버 포트를 열 수 없습니다");

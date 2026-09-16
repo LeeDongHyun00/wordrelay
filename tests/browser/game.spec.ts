@@ -6,15 +6,19 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  const mobile=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
  const host=await desktop.newPage(),guest=await mobile.newPage();
  const errors:string[]=[];host.on('pageerror',e=>errors.push(e.message));guest.on('pageerror',e=>errors.push(e.message));
- await host.goto('/');await expect(host.getByRole('heading',{name:'말이 이어질수록, 심장은 더 빠르게.'})).toBeVisible();
+ await host.goto('/');await expect(host.getByRole('heading',{name:'끝말잇기'})).toBeVisible();
+ await expect(host.locator('.brand')).toHaveText('↔이어');
+ await expect(host.locator('body')).not.toContainText('심장은 더');
+ await expect(host.locator('body')).not.toContainText('친구와 실시간 끝말잇기');
+ await expect(host.locator('footer')).toHaveText('사전 출처');
  await host.screenshot({path:'test-results/home-desktop.png',fullPage:true});
- await host.getByLabel('어떤 이름으로 불릴까요?').fill('동현');await host.getByRole('button',{name:'새로운 방 만들기'}).click();
- await expect(host.getByRole('heading',{name:'함께할 준비, 됐나요?'})).toBeVisible();
+ await host.getByLabel('닉네임').fill('동현');await host.getByRole('button',{name:'새로운 방 만들기'}).click();
+ await expect(host.getByRole('heading',{name:'대기방'})).toBeVisible();
  const room=new URL(host.url()).searchParams.get('room')!;expect(room).toHaveLength(6);
  await expect(host.locator('#qr')).toHaveAttribute('src',/^data:image\/png/);
  await expect(host.getByRole('button',{name:'게임 시작'})).toBeDisabled();
- await guest.goto(`/?room=${room}`);await guest.getByLabel('어떤 이름으로 불릴까요?').fill('민지');await guest.getByRole('button',{name:'이 방에 입장하기'}).click();
- await expect(guest.getByRole('heading',{name:'함께할 준비, 됐나요?'})).toBeVisible();
+ await guest.goto(`/?room=${room}`);await guest.getByLabel('닉네임').fill('민지');await guest.getByRole('button',{name:'이 방에 입장하기'}).click();
+ await expect(guest.getByRole('heading',{name:'대기방'})).toBeVisible();
  await expect(host.locator('.player-card').filter({hasText:'민지'})).toBeVisible();
  await host.screenshot({path:'test-results/lobby-desktop.png',fullPage:true});await guest.screenshot({path:'test-results/lobby-mobile.png',fullPage:true});
  await host.getByRole('button',{name:'준비하기',exact:true}).click();await guest.getByRole('button',{name:'준비하기',exact:true}).click();
@@ -25,6 +29,13 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  const starts=(await active.locator('.word-prompt b').innerText()).split(' / ');
  const initial=(await active.getByTestId('current-word').innerText()).replace(/\s/g,'');
  const next=data.entries.find((e:any)=>starts.includes(e.firstSyllable)&&e.reading!==initial);
+ await active.getByLabel('끝말잇기 단어').fill('등록되지않은단어쀍쀍');
+ await active.getByRole('button',{name:'입력',exact:false}).click();
+ await expect(active.getByRole('alert')).toContainText('정답이 아닙니다');
+ await expect(active.locator('#word-input')).toHaveAttribute('aria-invalid','true');
+ await expect(active.locator('#word-input')).toHaveValue('등록되지않은단어쀍쀍');
+ await active.screenshot({path:'test-results/invalid-answer.png',fullPage:true});
+ await expect(active.locator('.round-label')).toHaveText('0 WORDS CONNECTED');
  await active.getByLabel('끝말잇기 단어').fill(next.label);
  await active.locator('#word-input').dispatchEvent('compositionstart');
  await active.locator('#word-form').evaluate((form:HTMLFormElement)=>form.requestSubmit());
@@ -32,6 +43,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
  await active.locator('#word-input').dispatchEvent('compositionend');
  await active.waitForTimeout(100);
  await active.getByRole('button',{name:'입력',exact:false}).click();
+ await expect(active.getByRole('alert')).toHaveCount(0);
  await expect(host.locator('.round-label')).toHaveText('1 WORDS CONNECTED');await expect(guest.locator('.round-label')).toHaveText('1 WORDS CONNECTED');
  await host.locator('.dictionary-panel summary').click();await expect(host.locator('.meaning-list article').first()).toBeVisible();
  await host.screenshot({path:'test-results/game-desktop.png',fullPage:true});await guest.screenshot({path:'test-results/game-mobile.png',fullPage:true});
@@ -45,7 +57,7 @@ test('desktop + mobile: create, QR, join, ready, play, explanation, reload',asyn
 test('mobile home and invalid invitation',async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.goto('/?room=ZZZZZZ');
  await page.screenshot({path:'test-results/home-mobile.png',fullPage:true});
- await page.getByLabel('어떤 이름으로 불릴까요?').fill('친구');await page.getByRole('button',{name:'이 방에 입장하기'}).click();
+ await page.getByLabel('닉네임').fill('친구');await page.getByRole('button',{name:'이 방에 입장하기'}).click();
  await expect(page.getByRole('status')).toContainText('방을 찾을 수 없어요');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
 });

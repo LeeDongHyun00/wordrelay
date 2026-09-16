@@ -224,7 +224,7 @@ impl Game {
         }
         self.turn = (Uuid::new_v4().as_u128() as usize) % self.players.len();
         self.new_seed(d);
-        self.notice = "잠시 후 시작! 마지막 글자를 이어 주세요.".to_owned();
+        self.notice = "3초 후 시작합니다.".to_owned();
         self.begin_turn(now + COUNTDOWN);
         self.updated = now;
         Ok(())
@@ -271,7 +271,7 @@ impl Game {
         self.winner_id = alive.first().map(|p| p.id.clone());
         self.notice = alive
             .first()
-            .map(|p| format!("{} 님이 마지막까지 살아남았어요!", p.name))
+            .map(|p| format!("{} 님 승리", p.name))
             .unwrap_or("남은 참가자가 없어 게임을 마쳤어요.".into());
         self.phase = Phase::Finished;
         self.deadline = None;

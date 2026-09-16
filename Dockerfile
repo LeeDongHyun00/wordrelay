@@ -19,6 +19,5 @@ COPY --from=server /build/target/release/wordrelay ./wordrelay
 COPY --from=web /build/dist ./dist
 COPY data ./data
 USER 10001:10001
-ENV BIND_ADDR=0.0.0.0:3000
 EXPOSE 3000
 CMD ["./wordrelay"]
